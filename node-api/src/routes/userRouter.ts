@@ -17,7 +17,7 @@ userRouter.post('/', async (req, res) => {
         const repository = AppDataSource.getRepository(UserEntity);
         const entity = repository.create(data);
         const user = await repository.save(entity);
-        res.json({user}).status(201);
+        res.json({message: "Chama loco"}).status(201);
     } catch (error) {
         res.status(400).json({ error: 'Invalid user data' });
     }        

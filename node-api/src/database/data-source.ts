@@ -18,9 +18,8 @@ export const AppDataSource = new DataSource({
     username: databaseUsername,
     password: databasePassword,
     database: databaseName,
-    driver: "mysql2",
     synchronize: true,
     entities: [UserEntity],
-    //migrations: "src/database/migrations/*.ts",
-    migrationsRun: true,
+    migrations: ["src/database/migrations/*.ts"],
+    migrationsRun: false,
 });

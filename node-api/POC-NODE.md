@@ -11,6 +11,7 @@
     - zod 
     - cors 
     - tsx 
+    - msql2
 
 #### Instalar as dependencias de desenvolvimento (devDependecies)
 
