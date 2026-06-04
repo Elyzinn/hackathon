@@ -15,11 +15,11 @@ public class UserGui extends JFrame implements PainelDefault {
     private JPanel painel = new JPanel(new GridBagLayout());
     private JLabel idLabel = new JLabel("Id");
     private JTextField idField = new JTextField(20);
-    private JLabel nameLabel = new JLabel("Id");
+    private JLabel nameLabel = new JLabel("Name");
     private JTextField nameField = new JTextField(20);
-    private JLabel emailLabel = new JLabel("Id");
+    private JLabel emailLabel = new JLabel("Email");
     private JTextField emailField = new JTextField(20);
-    private JLabel passwordLabel = new JLabel("Id");
+    private JLabel passwordLabel = new JLabel("Senha");
     private JTextField passwordField = new JTextField(20);
     private JButton botaoEnviar = new JButton("Enviar");
     private JButton botaoDeletar = new JButton("Deletar");
