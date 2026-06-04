@@ -10,7 +10,7 @@ public class Dao {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.connection = DriverManager.getConnection(
-                    "url",
+                    "jdbc:mysql://localhost:3306/hackathon?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC",
                     "root",
                     "root"
             );

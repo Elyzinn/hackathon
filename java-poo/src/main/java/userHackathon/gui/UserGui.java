@@ -27,7 +27,7 @@ public class UserGui extends JFrame implements PainelDefault {
 
     public UserGui() throws HeadlessException{
         // descomentar ao finalizar o service
-        //this.service = new ProdutoService()
+        this.service = new UserService();
 
         setTitle("Usuarios");
         setSize(800,500);
