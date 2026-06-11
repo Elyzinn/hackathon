@@ -1,0 +1,672 @@
+/* ==========================================================================
+   RESET E CONFIGURAÇÕES BASE (Tipografia Oficial UniALFA)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo do Texto Geral (Legibilidade) */
+body, p, span, li, input, textarea, a {
+    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #000000;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Títulos e Elementos de Ação (Identidade Geométrica/Moderna) */
+h1, h2, h3, h4, h5, h6, 
+.main-navigation ul li a, 
+.dropdown-menu a, 
+.sidebar-title, 
+.btn-enroll,
+.footer-top-links a {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* ==========================================================================
+   1. BARRA SUPERIOR ULTRA-FINA (Estilo UniALFA Real)
+   ========================================================================== */
+.top-utility-bar {
+    background-color: #ffffff; /* Fundo branco idêntico ao print */
+    border-bottom: 1px solid #e3e3e3; /* Linha cinza clara divisória */
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.top-bar-container {
+    width: 100%;
+    max-width: 1400px; /* Mudado de 1200px para 1400px */
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Links e textos comuns das duas extremidades */
+.top-left-info a, 
+.top-right-links a {
+    color: #555555; /* Tom de cinza escuro corporativo */
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 400;
+    transition: color 0.2s;
+}
+
+/* Alinhamento dos ícones da esquerda */
+.top-left-info {
+    display: flex;
+    gap: 20px;
+}
+
+.top-left-info a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px; /* Espaçamento entre o ícone e o texto */
+}
+
+.top-left-info i {
+    color: #333333; /* Ícone levemente mais escuro */
+    font-size: 0.85rem;
+}
+
+/* Configuração dos links da direita */
+.top-right-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Estilização da barra vertical "|" separadora */
+.top-right-links .pipe {
+    color: #cccccc;
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+
+/* Efeito sutil ao passar o mouse para indicar cliques */
+.top-left-info a:hover, 
+.top-right-links a:hover {
+    color: #115c74; /* Muda sutilmente para o azul da faculdade */
+}
+
+/* ==========================================================================
+   2. CABEÇALHO PRINCIPAL BRANCO (Navbar)
+   ========================================================================== */
+.site-header {
+    background-color: #ffffff;
+    width: 100%;
+    height: 85px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 100%;
+}
+
+.logo-main {
+    height: 52px;
+    display: block;
+}
+
+.main-navigation ul {
+    list-style: none;
+    display: flex;
+    height: 85px;
+}
+
+.main-navigation ul li {
+    display: flex;
+    align-items: center;
+}
+
+.main-navigation ul li a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 0 16px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.main-navigation ul li a:hover,
+.main-navigation ul li a.nav-active {
+    color: #000000;
+    background-color: #f8f9fa;
+}
+
+/* ==========================================================================
+   3. DROPDOWNS (ALUNOS E EMPRESA)
+   ========================================================================== */
+.dropdown-item {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    min-width: 260px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-top: 3px solid #115c74;
+    border-radius: 0 0 6px 6px;
+    overflow: hidden;
+}
+
+.dropdown-menu a {
+    color: #000000 !important;
+    padding: 14px 20px !important;
+    font-size: 0.82rem !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    border-bottom: 1px solid #f1f3f5;
+    height: auto !important;
+    display: block !important;
+}
+
+.dropdown-menu a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu a:hover {
+    background-color: #115c74 !important;
+    color: #ffffff !important;
+    padding-left: 25px !important;
+}
+
+.dropdown-item:hover .dropdown-menu {
+    display: block;
+}
+
+.arrow {
+    font-size: 0.65rem;
+    margin-left: 6px;
+    display: inline-block;
+}
+
+/* ==========================================================================
+   4. BARRA DE TÍTULO / BREADCRUMBS (Transformado em Banner com Imagem)
+   ========================================================================== */
+.page-title-bar {
+    /* Película escura de 40% + a sua imagem de fundo */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('img/logo-unialfa.png');
+    background-size: cover;          /* Faz a imagem cobrir todo o espaço sem distorcer */
+    background-position: center;     /* Centraliza a foto horizontalmente e verticalmente */
+    background-repeat: no-repeat;
+    padding: 60px 0;                 /* Aumenta o espaço interno para o banner ficar imponente */
+    border-bottom: none;
+}
+
+.bar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-title {
+    color: #ffffff;                  /* Texto mudou para branco */
+    font-size: 2.2rem;               /* Título um pouco maior e mais imponente */
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra suave nas letras para dar leitura */
+}
+
+.breadcrumb {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.7); /* Texto cinza claro para os caminhos */
+}
+
+.breadcrumb a {
+    color: #f6b323;                  /* Links do caminho em Amarelo Ouro para destacar */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb span {
+    margin: 0 5px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.breadcrumb .current {
+    color: #ffffff;                  /* Página atual em branco puro */
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   5. LAYOUT DE CONTEÚDO (Grid Lado a Lado)
+   ========================================================================== */
+.page-wrapper {
+    max-width: 1400px;
+    margin: 50px auto 40px auto; /* Aumentado o espaçamento superior */
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+}
+
+/* MENU LATERAL ASIDE */
+.sidebar-menu {
+    background-color: #ffffff;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+    overflow: hidden;
+    height: fit-content;
+}
+
+.sidebar-title {
+    background-color: #115c74;
+    color: #ffffff;
+    padding: 16px 20px;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.sidebar-menu ul {
+    list-style: none; /* Remove as bolinhas pretas */
+}
+
+.sidebar-menu ul li a {
+    display: block;
+    padding: 13px 20px;
+    color: #000000;
+    text-decoration: none; /* Remove o sublinhado azul */
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-bottom: 1px solid #f1f3f5;
+    transition: all 0.2s;
+}
+
+.sidebar-menu ul li a:hover,
+.sidebar-menu ul li a.sidebar-active {
+    background-color: #f8f9fa;
+    color: #115c74;
+    border-left: 4px solid #f6b323; /* Tracinho amarelo na lateral esquerda */
+    padding-left: 16px;
+}
+
+/* ÁREA DO TEXTO */
+.main-content {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+}
+
+.content-article h2 {
+    color: #000000;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f1f3f5;
+    padding-bottom: 10px;
+}
+
+.content-article p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.highlight-box {
+    background-color: rgba(17, 92, 116, 0.04);
+    border-left: 4px solid #115c74;
+    padding: 20px;
+    margin: 30px 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.highlight-box h3 {
+    color: #000000;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+/* Responsividade caso a tela diminua */
+@media (max-width: 992px) {
+    .page-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Remove o padding do último link do menu principal para colar na direita */
+.main-navigation ul li:last-child a {
+    padding-right: 0;
+}
+
+/* Remove a margem do último link da barra superior para alinhar perfeitamente */
+.top-right-links a:last-child {
+    margin-right: 0;
+    padding-right: 0;
+}
+
+/* Garante que a lista de navegação ocupe o lado direito corretamente */
+.main-navigation {
+    margin-left: auto;
+}
+
+/* ==========================================================================
+   AJUSTE DA LOGO À ESQUERDA
+   ========================================================================== */
+
+/* Alinha o bloco da logo totalmente à esquerda do container */
+.logo-area {
+    margin-right: auto; /* Empurra o menu firmemente para o outro lado */
+    display: flex;
+    align-items: center;
+}
+
+/* Garante que a imagem comece do ponto zero esquerdo, sem recuos */
+.logo-main {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+/* ==========================================================================
+   ESTILIZAÇÃO DO RODAPÉ (Fidelidade à image_d8f148.png)
+   ========================================================================== */
+.site-footer {
+    background-color: #ffffff;
+    width: 100%;
+    margin-top: 60px;
+    border-top: 1px solid #e9ecef;
+}
+
+/* 1. FAIXA ESCURA SUPERIOR */
+.footer-top-links {
+    background-color: #0a3652; /* Azul escuro oficial do rodapé */
+    padding: 15px 0;
+}
+
+.footer-top-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.footer-top-container a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: opacity 0.2s;
+}
+
+.footer-top-container a:hover {
+    opacity: 0.8;
+}
+
+.footer-top-container i {
+    font-size: 1.1rem;
+}
+
+/* 2. CORPO DO RODAPÉ (GRID) */
+.footer-main {
+    padding: 50px 0;
+}
+
+.footer-main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1.3fr; /* Proporções exatas das colunas */
+    gap: 30px;
+}
+
+.footer-col h3 {
+    color: #333333;
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.footer-col .sub-heading {
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+    color: #666666;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s, padding-left 0.2s;
+    display: inline-block;
+}
+
+.footer-col ul li a:hover {
+    color: #0a3652;
+    padding-left: 3px;
+}
+
+/* Coluna 1: Branding & Caixa e-MEC */
+.col-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-logo {
+    height: 48px;
+    margin-bottom: 25px;
+}
+
+.emec-box {
+    border: 2px solid #00a1df;
+    border-radius: 8px;
+    width: 130px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background: #ffffff;
+    margin-bottom: 10px;
+}
+
+.emec-header {
+    background-color: #ffffff;
+    padding: 4px 0;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.emec-e { color: #00a1df; }
+.emec-mec { color: #555555; }
+
+.emec-qrcode {
+    padding: 5px;
+    color: #333333;
+    font-size: 4rem; /* Simula o tamanho do QR Code usando ícone */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+}
+
+.emec-footer {
+    background-color: #00a1df;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 0;
+}
+
+.emec-text {
+    font-size: 0.78rem;
+    color: #666666;
+    max-width: 130px;
+    text-align: center;
+    line-height: 1.3;
+}
+
+/* Coluna 4: Informações de Contato e Botão */
+.col-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.contact-item i {
+    color: #333333;
+    font-size: 1.2rem;
+    margin-top: 2px;
+}
+
+.contact-item p {
+    font-size: 0.88rem;
+    color: #555555;
+    line-height: 1.5;
+}
+
+.btn-enroll {
+    background-color: #24a148; /* Verde idêntico ao botão da imagem */
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 14px 20px;
+    border-radius: 4px;
+    text-align: center;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+    border-bottom: 3px solid #1c7c37;
+}
+
+.btn-enroll:hover {
+    background-color: #1c7c37;
+}
+
+/* 3. BARRA INFERIOR DE DIREITOS */
+.footer-bottom {
+    border-top: 1px solid #e9ecef;
+    padding: 20px 0;
+    background-color: #ffffff;
+}
+
+.footer-bottom-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copyright {
+    font-size: 0.85rem;
+    color: #666666;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 10px;
+}
+
+.social-icon {
+    width: 34px;
+    height: 34px;
+    background-color: #0a3652; /* Círculos no tom azul escuro */
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    background-color: #24a148;
+}
+
+/* 4. BOTÃO FLUTUANTE DO WHATSAPP */
+.whatsapp-floating-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 99999;
+    transition: transform 0.2s;
+}
+
+.whatsapp-floating-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Ajuste de responsividade para telas menores */
+@media (max-width: 992px) {
+    .footer-main-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    .footer-bottom-container {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-main-container {
+        grid-template-columns: 1fr;
+    }
+    .footer-top-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}

@@ -1,0 +1,128 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #005EA6; /*Caso a imagem não carregue, vai ficar a cor principal(azul UniAlfa)*/
+}
+
+/*Efeito de desfoque na imagem de fundo*/
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background-image: url('img/img-biblioteca.png'); 
+    background-size: cover;
+    background-position: center;
+    
+    filter: blur(5px); 
+    
+    /*O z-index negativo joga a imagem para trás da caixa de login*/
+    z-index: -1; 
+}
+
+/*Container de Login*/
+.login-card {
+    background-color: #115c74;
+    width: 350px;
+    padding: 40px 30px;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.login-card h2 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.input-group {
+    display: flex;
+    margin-bottom: 15px;
+    height: 45px;
+}
+
+.icon-box {
+    background-color: #f6b323; /* Amarelo/Laranja do protótipo */
+    width: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+
+    /*icone de cada bloco*/
+    background-repeat: no-repeat;  
+    background-position: center;   
+    background-size: 50px;        
+}
+
+.user-icon { background-image: url('img/icone-1.png'); } 
+
+.lock-icon { background-image: url('img/icone-2.png'); } 
+
+.email-icon { background-image: url('img/icone-3.png'); } 
+
+.CNPJ-icon { background-image: url('img/icone-4.png'); }
+
+.input-group input {
+    flex-grow: 1;
+    border: none;
+    padding: 0 15px;
+    background-color: #e0e0e0; 
+    color: #333;
+    font-size: 0.9rem;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    outline: none;
+}
+
+
+.btn-entrar {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #ffffff;
+    color: #115c74;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-entrar:hover {
+    background-color: #f6b323;
+    color: #ffffff;
+}
+
+.links-uteis {
+    text-align: left;
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+.links-uteis a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.links-uteis a:hover {
+    text-decoration: underline;
+}
+
