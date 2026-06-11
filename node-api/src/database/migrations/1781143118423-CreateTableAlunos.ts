@@ -11,6 +11,8 @@ export class CreateTableAlunos1781143118423 implements MigrationInterface {
                     { name: "nome", type: "varchar", length: "100", isNullable: false },
                     { name: "cpf", type: "varchar", length: "11", isNullable: false },
                     { name: "email", type: "varchar", length: "100", isNullable: false },
+                    { name: "ra", type: "int", isNullable: false },
+                    { name: "senha", type: "varchar", length: "100", isNullable: false },
                     { name: "telefone", type: "varchar", length: "11", isNullable: false },
                     { name: "curso", type: "varchar", length: "100", isNullable: false },
                     { name: "periodo", type: "int", isNullable: false },

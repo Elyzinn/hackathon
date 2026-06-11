@@ -11,6 +11,7 @@ export class CreateTableEmpresas1781144178064 implements MigrationInterface {
                     { name: "razao_social", type: "varchar", length: "100", isNullable: false },
                     { name: "cnpj", type: "varchar", length: "14", isNullable: false },
                     { name: "email", type: "varchar", length: "100", isNullable: false },
+                    { name: "senha", type: "varchar", length: "100", isNullable: false },
                     { name: "telefone_contato", type: "varchar", length: "11", isNullable: false },
                     { name: "responsavel", type: "varchar", length: "100", isNullable: false },
                     { name: "status", type: "tinyint", isNullable: false },
