@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { AppDataSource } from '../database/data-source.js';
+import { AppDataSource } from '../database/data-source';
 import { UserEntity } from '../models/UserEntity';
 import { UserRepository } from '../repositories/UserRepository';
 import { UserService } from '../services/UserService';
