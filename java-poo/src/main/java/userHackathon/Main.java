@@ -1,5 +1,6 @@
 package userHackathon;
 
+import userHackathon.gui.PrincipalGUI;
 import userHackathon.gui.UserGui;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ public class Main {
     }
 
     private static void executar(){
-        var gui = new UserGui();
+        var gui = new PrincipalGUI();
         gui.setVisible(true);
     }
 }
