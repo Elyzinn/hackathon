@@ -231,3 +231,9 @@ body::before {
     border-left: 5px solid #f6b323;
     line-height: 1.4;
 }
+
+/* Correção para formulários que ultrapassam o tamanho da tela */
+body.pag-formulario-longo {
+    height: auto;      /* Remove a altura travada de 100vh */
+    display: block;    /* Desativa o alinhamento rígido do body */
+}
