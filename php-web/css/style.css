@@ -1,4 +1,6 @@
-
+/* ==========================================================================
+   ESTILOS ORIGINAIS DO SEU LOGIN (MANTIDOS)
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -22,14 +24,10 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    
     background-image: url('../img/img-biblioteca.png'); 
     background-size: cover;
     background-position: center;
-    
     filter: blur(5px); 
-    
-    /*O z-index negativo joga a imagem para trás da caixa de login*/
     z-index: -1; 
 }
 
@@ -48,6 +46,8 @@ body::before {
     font-size: 1.2rem;
     margin-bottom: 30px;
     letter-spacing: 1px;
+    
+
 }
 
 .input-group {
@@ -64,19 +64,14 @@ body::before {
     align-items: center;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
-
-    /*icone de cada bloco*/
     background-repeat: no-repeat;  
     background-position: center;   
     background-size: 50px;        
 }
 
 .user-icon { background-image: url('../img/icone-1.png'); } 
-
 .lock-icon { background-image: url('../img/icone-2.png'); } 
-
 .email-icon { background-image: url('../img/icone-3.png'); } 
-
 .CNPJ-icon { background-image: url('../img/icone-4.png'); }
 
 .input-group input {
@@ -90,7 +85,6 @@ body::before {
     border-bottom-right-radius: 4px;
     outline: none;
 }
-
 
 .btn-entrar {
     width: 100%;
@@ -126,3 +120,120 @@ body::before {
     text-decoration: underline;
 }
 
+/* ==========================================================================
+   NOVAS REGRAS EXCLUSIVAS PARA OS FORMULÁRIOS DE CADASTRO E RECUPERAÇÃO
+   ========================================================================== */
+
+/* Wrapper que centraliza os novos cards na tela */
+.cadastro-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* Card com a mesma cor azul-petróleo do seu login, mas com largura dinâmica */
+.cadastro-card {
+    background-color: #115c74;
+    width: 100%;
+    max-width: 420px; /* Um pouco mais largo para comportar os novos dados confortavelmente */
+    padding: 35px 30px;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.cadastro-card h2 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+/* Alinhamento vertical correto para os novos cadastros (Rótulo em cima, campo embaixo) */
+.cadastro-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Labels brancas para dar contraste total contra o fundo escuro do card */
+.cadastro-group label {
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+/* Inputs seguindo o padrão cinza (#e0e0e0) da sua tela de login */
+.cadastro-group input {
+    width: 100%;
+    height: 42px;
+    border: none;
+    padding: 0 15px;
+    background-color: #e0e0e0; 
+    color: #333;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* Botão seguindo o mesmo estilo do seu .btn-entrar (Branco/Amarelo no hover) */
+.btn-cadastro {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #ffffff;
+    color: #115c74;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+
+.btn-cadastro:hover {
+    background-color: #f6b323;
+    color: #ffffff;
+}
+
+/* Links centralizados no rodapé do card */
+.cadastro-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.cadastro-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.cadastro-links a:hover {
+    text-decoration: underline;
+}
+
+/* Alerta de sucesso em branco e amarelo para a recuperação de senha */
+.msg-alerta-sucesso {
+    background-color: #ffffff;
+    color: #115c74;
+    padding: 15px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+    border-left: 5px solid #f6b323;
+    line-height: 1.4;
+}
+
+/* Correção para formulários que ultrapassam o tamanho da tela */
+body.pag-formulario-longo {
+    height: auto;      /* Remove a altura travada de 100vh */
+    display: block;    /* Desativa o alinhamento rígido do body */
+}
