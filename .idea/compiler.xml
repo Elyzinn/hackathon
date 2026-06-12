@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+<<<<<<< HEAD
+    <bytecodeTargetLevel>
+      <module name="java-poo" target="25" />
+    </bytecodeTargetLevel>
+=======
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -9,5 +14,6 @@
         <module name="java-poo" />
       </profile>
     </annotationProcessing>
+>>>>>>> 35322039fe1fe84890552c566c313f0ebba4bed5
   </component>
 </project>
