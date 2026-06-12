@@ -72,6 +72,34 @@
 .sidebar ul li a:hover { 
     background-color: rgba(255, 255, 255, 0.15);
     padding-left: 25px;
+}/* --------------------------------------------------------------------------
+   2. MENU LATERAL (SIDEBAR AZUL)
+   -------------------------------------------------------------------------- */
+.sidebar {
+    grid-area: sidebar;
+    background-color: #0084ff; 
+    color: #ffffff;
+    padding: 20px 0;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+
+    /* 👇 ATIVADO: Transforma a sidebar em um bloco flexível */
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar ul { 
+    list-style: none; 
+
+    /* 👇 ATIVADO: Faz a lista interna se esticar verticalmente */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+}
+
+/* 👇 NOVO: Essa classe faz a mágica de empurrar o item para o rodapé */
+.sidebar ul li.menu-sair {
+    margin-top: auto; 
+    padding-bottom: 15px; /* Deixa um respiro para não colar totalmente no chão */
 }
 
 /* --------------------------------------------------------------------------
