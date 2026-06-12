@@ -18,8 +18,6 @@ export const AppDataSource = new DataSource({
     username: databaseUsername,
     password: databasePassword,
     database: databaseName,
-    synchronize: true,
-    entities: [UserEntity],
     migrations: ["src/database/migrations/*.ts"],
     migrationsRun: true,
 });
