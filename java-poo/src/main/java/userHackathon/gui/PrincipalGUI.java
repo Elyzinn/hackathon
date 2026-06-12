@@ -30,7 +30,11 @@ public class PrincipalGUI extends JFrame implements PainelDefault{
         var miGerenciar = new JMenuItem("Gerenciar");
         miGerenciar.addActionListener(this::abrirEmpresa);
 
+        var miConsulta = new JMenuItem("Consultar");
+        miConsulta.addActionListener(this::abrirEmpresa); //verificar se vai precisar criar outro JPanel para isso
+
         menu.add(miGerenciar);
+        menu.add(miConsulta);
         return menu;
     }
 
