@@ -5,7 +5,6 @@ import userHackathon.util.WindowManager;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class PrincipalGUI extends JFrame implements PainelDefault{
     private JMenuBar menuBar = new JMenuBar();
