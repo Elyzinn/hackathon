@@ -1,3 +1,29 @@
+<?php
+    ob_start();
+    session_start();
+    require_once 'classes/Aluno.php';
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $aluno = new Aluno();
+        $res = $aluno->logar($_POST['cpf'],$_POST['senha'], $_POST['email']);
+        //var_dump($res);
+        //var_dump($aluno->loginSucesso($res));
+        if ($aluno->loginSucesso($res)){
+            $_SESSION['aluno_cpf'] = $_POST['cpf'];
+            $_SESSION['aluno_email'] = $_POST['email'];
+            $_SESSION['logado'] = true;
+            //var_dump($_SESSION); 
+            header('Location: estagioAluno.php');
+        }else{
+            $_SESSION['erro_login'] = 'CPF, email ou senha inválidos.';
+            ob_end_clean();
+            header('Location: login-aluno.php');
+        }
+        exit;
+    }
+    ob_end_flush(); 
+
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -12,11 +38,11 @@
         <div class="login-card">
             <h2>ESTÁGIO - ALUNO</h2>
             
-            <form action="processa_login.php" method="POST">
+            <form method="POST">
                 
                 <div class="input-group">
                     <span class="icon-box user-icon"></span> 
-                    <input type="text" name="usuario" placeholder="Usuário" required>                    
+                    <input type="text" name="cpf" placeholder="CPF" required>                    
                 </div>
 
                 <div class="input-group">
