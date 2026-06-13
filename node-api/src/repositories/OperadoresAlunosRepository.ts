@@ -1,16 +1,16 @@
 
 import { Repository } from "typeorm";
-import { OperadoresAlunosEntity } from "../models/OperadoresAlunosEntity";
+import { OperadocoesAlunosEntity } from "../models/OperacoesAlunosEntity";
 
 export interface IOperadoresAlunosRepository{
-    getCandidaturaById(id: number):Promise<OperadoresAlunosEntity | undefined>;
+    getCandidaturaById(id: number):Promise<OperadocoesAlunosEntity | undefined>;
 
 }; 
 
 export class OperadoresAlunosRepository implements IOperadoresAlunosRepository{
-    constructor(private readonly repo: Repository<OperadoresAlunosEntity>){};
+    constructor(private readonly repo: Repository<OperadocoesAlunosEntity>){};
 
-    async getCandidaturaById(idoperacoes_aluno: number): Promise<OperadoresAlunosEntity | undefined> {
+    async getCandidaturaById(idoperacoes_aluno: number): Promise<OperadocoesAlunosEntity | undefined> {
         const linha = await this.repo.findOne({where: { idoperacoes_aluno }});
         return linha ?? undefined;
     }
