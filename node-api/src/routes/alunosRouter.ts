@@ -12,6 +12,6 @@ const alunoService = new AlunoService(alunoRepository);
 const alunoController = new AlunoController(alunoService);
 
 alunoRouter.get("/alunos/:id", alunoController.listAlunoPorId);
-
+alunoRouter.post("/alunoLogin", alunoController.loginAluno);
 
 export default alunoRouter;
