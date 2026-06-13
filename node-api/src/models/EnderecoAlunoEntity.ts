@@ -9,10 +9,10 @@ export class EnderecoAlunoEntity {
     id!: number;
 
     @Column({ type: "varchar",})
-    logadouro!: string;
+    logradouro!: string;
 
     @Column({ type: "varchar"})
-    num_logadouro!: number;
+    num_logradouro!: string;
 
     @Column({ type: "varchar"})
     bairro!: string;

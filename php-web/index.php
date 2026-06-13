@@ -42,8 +42,6 @@
         </div>
     </div>
 
-    <!-- O resto do cabeçalho (<header>) continua igual abaixo... -->
-
     <!-- 2. CABEÇALHO PRINCIPAL BRANCO -->
     <header class="site-header">
         <div class="header-container">

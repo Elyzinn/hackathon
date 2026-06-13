@@ -15,7 +15,7 @@ export class AlunosEntity{
     email!: string;
     
     @Column({type: "varchar",})
-    ra!: string;
+    ra!: number;
 
     @Column({type: "varchar",})
     senha!: string;
@@ -32,7 +32,7 @@ export class AlunosEntity{
     @Column({type: "date"})
     data_nasc!:Date
 
-    @Column({type: "int"})
+    @Column({type: "integer"})
     endereco_aluno!:number;
 }
 

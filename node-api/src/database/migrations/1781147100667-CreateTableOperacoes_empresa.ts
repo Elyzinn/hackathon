@@ -7,7 +7,7 @@ export class CreateTableOperacoesEmpresa1781147100667 implements MigrationInterf
             new Table({
                 name: "operacoes_empresa",
                 columns: [
-                    { name: "idoperacoes_aluno", type: "int", isPrimary: true, isGenerated: true, generationStrategy: "increment" },
+                    { name: "id", type: "int", isPrimary: true, isGenerated: true, generationStrategy: "increment" },
                     { name: "descricao", type: "varchar", length: "100", isNullable: false },
                     { name: "date_operacao", type: "datetime", isNullable: false },
                     { name: "operadores_id", type: "int", isNullable: false },
@@ -20,7 +20,7 @@ export class CreateTableOperacoesEmpresa1781147100667 implements MigrationInterf
             "operacoes_empresa",
             new TableForeignKey({
                 name: "FK_op_empresa_operador",
-                columnNames: ["operadores_id"],
+                columnNames: ["id"],
                 referencedTableName: "operadores",
                 referencedColumnNames: ["id"],
                 onDelete: "CASCADE",

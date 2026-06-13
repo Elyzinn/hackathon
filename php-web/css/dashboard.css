@@ -1,0 +1,159 @@
+/* ==========================================================================
+   DASHBOARD CSS - Baseado no Protótipo de Baixa Fidelidade
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Container Principal (Grid) */
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 150px 1fr; 
+    grid-template-rows: 60px 1fr;    
+    grid-template-areas: 
+        "header header"
+        "sidebar main";
+    height: 100vh;
+}
+
+/* --------------------------------------------------------------------------
+   1. BARRA SUPERIOR (HEADER)
+   -------------------------------------------------------------------------- */
+.top-header {
+    grid-area: header;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 10;
+}
+
+.logo-area { 
+    font-weight: bold; 
+    color: #115c74; 
+    font-size: 1.1rem;
+}
+
+.user-profile {
+    font-size: 0.9rem;
+    color: #333333;
+}
+
+/* --------------------------------------------------------------------------
+   2. MENU LATERAL (SIDEBAR AZUL)
+   -------------------------------------------------------------------------- */
+.sidebar {
+    grid-area: sidebar;
+    background-color: #0084ff; 
+    color: #ffffff;
+    padding: 20px 0;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar ul { 
+    list-style: none; 
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+}
+
+/* Ajuste nos links para se adaptarem à nova largura */
+.sidebar ul li a {
+    display: block;
+    color: #ffffff;
+    padding: 15px 15px; 
+    text-decoration: none;
+    font-size: 0.9rem;  
+    transition: background 0.3s, padding-left 0.3s;
+}
+
+.sidebar ul li a:hover { 
+    background-color: rgba(255, 255, 255, 0.15);
+    padding-left: 20px; 
+}
+
+/* Empurra o item "Sair" para o rodapé */
+.sidebar ul li.menu-sair {
+    margin-top: auto; 
+    padding-bottom: 15px; 
+}
+
+/* --------------------------------------------------------------------------
+   3. ÁREA DE CONTEÚDO PRINCIPAL (MAIN)
+   -------------------------------------------------------------------------- */
+.main-content {
+    grid-area: main;
+    background-color: #f4f6f9;
+    padding: 25px;
+    overflow-y: auto; /* Cria barra de rolagem se o conteúdo crescer */
+}
+
+/* Banner Principal (Hero Gray) */
+.hero-banner {
+    background-color: #d6d8db; /* O cinza do seu protótipo */
+    border-radius: 6px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.hero-banner h2 {
+    color: #212529;
+    margin-bottom: 8px;
+    font-size: 1.5rem;
+}
+
+.hero-banner p {
+    color: #495057;
+    font-size: 1rem;
+}
+
+/* 4. Grid de Conteúdo Inferior (Duas Colunas) */
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Coluna maior na esquerda, menor na direita */
+    gap: 20px;
+}
+
+.card-box {
+    background-color: #ffffff;
+    border-radius: 6px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    min-height: 250px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.card-box h3 {
+    font-size: 1.1rem;
+    color: #115c74;
+    border-bottom: 2px solid #f4f6f9;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVIDADE (MOBILE)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    .dashboard-container {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "header" 
+            "main";
+    }
+    .sidebar { 
+        display: none; /* Opcional: esconde o menu lateral em telas de celular */
+    } 
+    .content-grid { 
+        grid-template-columns: 1fr; 
+    }
+}

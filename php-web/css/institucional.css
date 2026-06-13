@@ -208,7 +208,7 @@ h1, h2, h3, h4, h5, h6,
    ========================================================================== */
 .page-title-bar {
     /* Película escura de 40% + a sua imagem de fundo */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('img/logo-unialfa.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../img/logo-unialfa.png');
     background-size: cover;          /* Faz a imagem cobrir todo o espaço sem distorcer */
     background-position: center;     /* Centraliza a foto horizontalmente e verticalmente */
     background-repeat: no-repeat;

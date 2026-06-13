@@ -7,7 +7,7 @@ export class CreateTableCandidaturas1781144449520 implements MigrationInterface 
             new Table({
                 name: "candidaturas",
                 columns: [
-                    { name: "aluno_idaluno", type: "int", isNullable: false  },
+                    { name: "aluno_id", type: "int", isNullable: false  },
                     { name: "vagas_id", type: "int", isNullable: false }
                 ]
             })
@@ -17,7 +17,7 @@ export class CreateTableCandidaturas1781144449520 implements MigrationInterface 
             "candidaturas",
             new TableForeignKey({
                 name: "FK_candidatura_aluno",
-                columnNames: ["aluno_idaluno"],
+                columnNames: ["aluno_id"],
                 referencedTableName: "alunos",
                 referencedColumnNames: ["id"],
                 onDelete: "CASCADE",

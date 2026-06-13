@@ -32,8 +32,8 @@
                     <button type="submit" class="btn-entrar">Entrar</button>
 
                 <div class="links-uteis">
-                    <a href="#">Esqueceu sua senha?</a><br>
-                    <a href="#">Novo cadastro</a>
+                    <a href="recuperarSenhaE.php">Esqueceu sua senha?</a><br>
+                    <a href="cadastroEmpresa.php">Criar novo cadastro</a>
                 </div>
 
             </form>
