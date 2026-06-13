@@ -7,7 +7,8 @@ public class Empresa {
     private String email;
     private String telefoneContato;
     private String responsavel;
-    private Long enderecoEmpresa;
+    private Long idEnderecoEmpresa;
+    private Boolean status;
 
     public Long getId() {
         return id;
@@ -57,11 +58,19 @@ public class Empresa {
         this.responsavel = responsavel;
     }
 
-    public Long getEnderecoEmpresa() {
-        return enderecoEmpresa;
+    public Long getIdEnderecoEmpresa() {
+        return idEnderecoEmpresa;
     }
 
-    public void setEnderecoEmpresa(Long enderecoEmpresa) {
-        this.enderecoEmpresa = enderecoEmpresa;
+    public void setIdEnderecoEmpresa(Long idEnderecoEmpresa) {
+        this.idEnderecoEmpresa = idEnderecoEmpresa;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }
