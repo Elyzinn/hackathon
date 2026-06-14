@@ -11,7 +11,7 @@
         if ($aluno->loginSucesso($res)){
             $_SESSION['aluno_cpf'] = $_POST['cpf'];
             $_SESSION['aluno_email'] = $_POST['email'];
-            $_SESSION['logado'] = true;
+            $_SESSION['alunoLogado'] = true;
             //var_dump($_SESSION); 
             header('Location: estagioAluno.php');
         }else{
@@ -60,10 +60,7 @@
 
                 <div class="links-uteis">
                     <a href="recuperarSenhaA.php">Esqueceu sua senha?</a><br>
-                    <a href="cadastroAluno.php">Novo cadastro</a>
                 </div>
-
-                
             </form>
         </div>
     </div>

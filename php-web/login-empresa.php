@@ -1,3 +1,27 @@
+<?php
+    ob_start();
+    session_start();
+    require_once 'classes/Empresa.php';
+
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $empresa = new Empresa();
+        $res = $empresa->logar($_POST['cnpj'], $_POST['senha'], $_POST['email']);
+
+        if($aluno->resHttp($res)){
+            $_SESSION['empresa_cnpj'] = $_POST['cnpj'];
+            $_SESSION['empresa_email'] = $_POST['email'];
+            $_SESSION['empresalogada'] = true;
+
+            header('Location: estagioEmpresa.php');
+        }else{
+            $_SESSION['erro_login'] = 'CPNJ, email ou senha invalidos';
+            ob_end_clean();
+            header('Location: login-empresa.php');
+        }
+        exit;
+    }
+    ob_end_flush();
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -15,8 +39,8 @@
             <form action="processa_login.php" method="POST">
                 
                 <div class="input-group">
-                    <span class="icon-box user-icon"></span>
-                    <input type="text" name="usuario" placeholder="Usuário" required>
+                    <span class="icon-box CNPJ-icon"></span>
+                    <input type="text" name="cnpj" placeholder="CNPJ" required>
                 </div>
 
                 <div class="input-group">
@@ -25,8 +49,8 @@
                 </div>
 
                 <div class="input-group">
-                    <span class="icon-box CNPJ-icon"></span>
-                    <input type="text" name="cnpj" placeholder="CNPJ" required>
+                    <span class="icon-box email-icon"></span>
+                    <input type="text" name="email" placeholder="email" required>
                 </div>
 
                     <button type="submit" class="btn-entrar">Entrar</button>
