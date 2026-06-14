@@ -6,7 +6,6 @@ import userHackathon.util.WindowManager;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class PrincipalGUI extends JFrame implements PainelDefault{
     private JMenuBar menuBar = new JMenuBar();
@@ -24,7 +23,7 @@ public class PrincipalGUI extends JFrame implements PainelDefault{
     }
 
     private JMenu menuEmpresa(){
-        var menu = new JMenu("Empresa");
+        var menu = new JMenu("Empresas");
         menu.setFont(new Font("Arial", Font.PLAIN, 16));
 
         var miGerenciarEmpresa = new JMenuItem("Gerenciar Empresa");
