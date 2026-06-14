@@ -9,7 +9,7 @@ export class CreateTableVagas1781144424514 implements MigrationInterface {
                 columns: [
                     { name: "id", type: "int", isPrimary: true, isGenerated: true, generationStrategy: "increment" },
                     { name: "cargo", type: "varchar", length: "100", isNullable: false },
-                    { name: "vaga_preenchida", type: "varchar", length: "14", isNullable: false },
+                    { name: "vaga_preenchida", type: "tinyint", isNullable: false },
                     { name: "data_abertura", type: "date", isNullable: false },
                     { name: "data_fechamento", type: "date", isNullable: false },
                     { name: "empresas_id", type: "int", isNullable: false }

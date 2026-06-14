@@ -8,7 +8,7 @@ export class VagasEntity{
     @Column({type: "varchar",})
     cargo!: string;
 
-    @Column({type: "varchar",})
+    @Column({type: "boolean"})
     vaga_preenchida!: boolean;
 
     @Column({type: "date",})
@@ -17,7 +17,7 @@ export class VagasEntity{
     @Column({type: "date",})
     data_fechamento!: Date;
     
-    @Column({type: "varchar",})
+    @Column({type: "integer",})
     empresas_id!: number;
 
 }

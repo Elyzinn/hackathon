@@ -10,7 +10,7 @@
 
         public function __construct(){
            //confirmar URL
-            $this->baseUrl = 'http://host.docker.internal:5000/';
+            $this->baseUrl = rtrim(getenv('NODE_API_URL'), '/') . '/'; // pega URL do docker compose
             $this->headers = [
                 'Content-Type: application/json',
                 'Accept: application/json',

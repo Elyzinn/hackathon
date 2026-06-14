@@ -6,12 +6,12 @@ export interface IEnderecoEmpresaRepository {
     getEnderecoById(id: number): Promise<EnderecoEmpresaEntity | undefined>;
     getEnderecoByCep(cep: string): Promise<EnderecoEmpresaEntity | undefined>;
     getEnderecoByUf(uf: string): Promise<EnderecoEmpresaEntity | undefined>;
-    createEnderecoAlunos(data: Omit<EnderecoEmpresaEntity, "id">): Promise<EnderecoEmpresaEntity>;
-    saveEnderecoAlunos(entity: EnderecoEmpresaEntity): Promise<EnderecoEmpresaEntity>;
-    deleteEnderecoAlunos(id: number): Promise<boolean>;
+    createEnderecoEmpresa(data: Omit<EnderecoEmpresaEntity, "id">): Promise<EnderecoEmpresaEntity>;
+    saveEnderecoEmpresa(entity: EnderecoEmpresaEntity): Promise<EnderecoEmpresaEntity>;
+    deleteEnderecoEmpresa(id: number): Promise<boolean>;
 };
 
-export class EnderecoAlunoRepository implements IEnderecoEmpresaRepository{
+export class EnderecoEmpresaRepository implements IEnderecoEmpresaRepository{
     constructor(private readonly repo: Repository<EnderecoEmpresaEntity>) {};
 
     async getEnderecoById(id: number): Promise<EnderecoEmpresaEntity | undefined> {
@@ -34,18 +34,18 @@ export class EnderecoAlunoRepository implements IEnderecoEmpresaRepository{
         return row ?? undefined;
     }
 
-    async createEnderecoAlunos(dados: Omit<EnderecoEmpresaEntity, "id">): Promise<EnderecoEmpresaEntity> {
+    async createEnderecoEmpresa(dados: Omit<EnderecoEmpresaEntity, "id">): Promise<EnderecoEmpresaEntity> {
         const dadosIn = this.repo.create(dados);
         const save = await this.repo.save(dadosIn);
         return(save);
     }
 
-    async saveEnderecoAlunos(entity: EnderecoEmpresaEntity): Promise<EnderecoEmpresaEntity> {
+    async saveEnderecoEmpresa(entity: EnderecoEmpresaEntity): Promise<EnderecoEmpresaEntity> {
         const save = await this.repo.save(entity);
         return(save);
     }
 
-    async deleteEnderecoAlunos(id: number): Promise<boolean> {
+    async deleteEnderecoEmpresa(id: number): Promise<boolean> {
         const rm = await this.repo.delete(id);
         return (rm.affected ?? 0) > 0;
     }

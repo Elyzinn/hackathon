@@ -7,6 +7,7 @@ export class CreateTableCandidaturas1781144449520 implements MigrationInterface 
             new Table({
                 name: "candidaturas",
                 columns: [
+                    { name: "id", type: "int", isPrimary: true, isGenerated: true, generationStrategy: "increment" },
                     { name: "aluno_id", type: "int", isNullable: false  },
                     { name: "vagas_id", type: "int", isNullable: false }
                 ]

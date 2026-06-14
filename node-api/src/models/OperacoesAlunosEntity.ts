@@ -4,9 +4,9 @@ import { Column,
 } from "typeorm";
 
 @Entity({name : "operacoes_aluno"})
-export class OperadoresAlunosEntity { 
+export class OperadocoesAlunosEntity { 
     @PrimaryGeneratedColumn()
-    idoperacoes_aluno!: number;
+    id!: number;
 
     @Column({ type: "varchar",})
     descricao!: string;
@@ -22,4 +22,4 @@ export class OperadoresAlunosEntity {
 
 }
 
-export default OperadoresAlunosEntity;
+export default OperadocoesAlunosEntity;

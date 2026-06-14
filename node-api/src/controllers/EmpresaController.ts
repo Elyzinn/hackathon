@@ -1,44 +1,44 @@
 import type { Request, Response, NextFunction } from 'express';
-import type { AlunoService } from '../services/AlunoService';
 import AppError from '../utils/AppErrors';
 import z from "zod";
+import { EmpresaService } from '../services/EmpresaService';
 
 
-export class AlunoController{
-    constructor(private readonly alunoSerivice: AlunoService){};
+export class EmpresaController{
+    constructor(private readonly empresaService: EmpresaService){};
 
     private schemaLogin = z.object({
-        cpf: z.string({message: "CPF é obrigatório"}).length(11),
+        cnpj: z.string({message: "CNPJ é obrigatório"}).length(14),
         senha: z.string({message: "Senha é obrigatorio"})
         .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/)
         .regex(/[0-9]/),
         email: z.string().email(),
     })
 
-    listAlunoPorId = async(req: Request, res: Response, next: NextFunction) =>{
+    listEmpresaPorId = async(req: Request, res: Response, next: NextFunction) =>{
         try {
             const id = Number(req.params.id);
             if(!Number.isInteger(id) || id < 1){
                 throw new AppError(400, "Parametro errado");
             }
-            const alunos = await this.alunoSerivice.listarAlunoPorId(id);
-            if(!alunos){
+            const empresas = await this.empresaService.listarEmpresasPorId(id);
+            if(!empresas){
                 throw new AppError(404, "Não encontrado")
             }
-            res.json({ alunos });
+            res.json({ empresas });
         } catch (error) {
             next(error)
         }
     }
 
-    loginAluno = async(req: Request, res: Response, next: NextFunction) => {
+    loginEmpresa = async(req: Request, res: Response, next: NextFunction) => {
         try {
             const dados = this.schemaLogin.parse(req.body);
-            const login = this.alunoSerivice.loginAluno(dados);
+            const login = this.empresaService.loginEmpresa(dados);
             if(!login){
                 throw new AppError(404, "Erro ao logar");
             }
-            res.status(200).json({message: "Aluno logado"})
+            res.status(200).json({message: "Empresa logada"})
         } catch (error) {
             next(error)
         }

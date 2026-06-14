@@ -10,7 +10,7 @@
     "migration:show": "typeorm-ts-node-commonjs -d ./src/database/data-source.ts migration:show",
     "migration:create": "typeorm-ts-node-commonjs migration:create ./src/database/migrations/Migration",
     "migration:generate": "typeorm-ts-node-commonjs -d ./src/database/data-source.ts migration:generate ./src/database/migrations/alterarUsuario",
-    "seed:run": "ts-node ./src/database/seeds/*.ts"
+    "seed:run": "ts-node ./src/database/seeds/runSeeds.ts"
   },
   "keywords": [],
   "author": "",

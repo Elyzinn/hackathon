@@ -5,10 +5,10 @@ export class ContratosEntity{
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column({type: "varchar",})
+    @Column({type: "integer",})
     vagas_id!: number;
 
-    @Column({type: "varchar",})
+    @Column({type: "integer",})
     aluno_id!: number;
 
     @Column({type: "date",})

@@ -31,5 +31,8 @@ export class VagasRepository implements IVagasRepository{
         const rm = await this.repo.delete(id);
         return (rm.affected ?? 0) > 0;
     }
+
     
 }; 
+
+

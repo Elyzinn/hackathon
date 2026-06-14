@@ -1,14 +1,14 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({name: "empresas"})
+@Entity({name: "candidaturas"})
 export class CandidaturasEntity{
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column({type: "varchar",})
-    aluno_idaluno!: number;
+    @Column({type: "integer"})
+    aluno_id!: number;
 
-    @Column({type: "varchar",})
+    @Column({type: "integer"})
     vagas_id!: number;
 
 }

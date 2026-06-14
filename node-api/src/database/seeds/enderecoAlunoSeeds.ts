@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { AppDataSource } from "../data-source";
-import { EnderecoAlunoEntity } from "../../models/EnderecoAlunoEntity"; // Ajuste o caminho se necessário
+import { EnderecoAlunoEntity } from "../../models/EnderecoAlunoEntity";
 
 const enderecosBase = [
     {
@@ -50,8 +50,7 @@ const enderecosBase = [
     },
 ];
 
-async function runSeeds(): Promise<void> {
-    await AppDataSource.initialize();
+export async function seedEnderecoAluno(): Promise<void> {
     const enderecoRepo = AppDataSource.getRepository(EnderecoAlunoEntity);
 
     const enderecosSeeds = await Promise.all(
@@ -70,15 +69,4 @@ async function runSeeds(): Promise<void> {
 
    
     await enderecoRepo.save(enderecosSeeds);
-    
-    console.log("Seeds de endereços executadas com sucesso!");
-    await AppDataSource.destroy();
 }
-
-runSeeds().catch(async (error) => {
-    console.error("Erro ao executar as seeds de endereço:", error);
-    if (AppDataSource.isInitialized) {
-        await AppDataSource.destroy();
-    }
-    process.exit(1);
-});

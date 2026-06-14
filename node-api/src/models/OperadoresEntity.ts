@@ -19,7 +19,6 @@ export class OperadoresEntity {
 
     @Column({type: "date",})
     data_recisao!: Date;
-
 }
 
 export default OperadoresEntity;

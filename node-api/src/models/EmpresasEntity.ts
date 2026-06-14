@@ -23,6 +23,9 @@ export class EmpresasEntity{
     @Column({type: "varchar",})
     responsavel!: string;
 
+    @Column({type: "boolean"})
+    status!: boolean;
+
     @Column({type: "integer"})
     endereco_empresa!:number;
 }

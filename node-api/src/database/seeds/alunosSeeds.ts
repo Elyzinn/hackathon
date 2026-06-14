@@ -61,8 +61,7 @@ const alunosBase = [
     },
 ];
 
-async function runSeeds(): Promise<void> {
-    await AppDataSource.initialize();
+export async function seedAlunos(): Promise<void> {
     const alunoRepo = AppDataSource.getRepository(AlunosEntity);
 
     const alunosSeeds = await Promise.all(
@@ -85,15 +84,5 @@ async function runSeeds(): Promise<void> {
     );
 
     await alunoRepo.save(alunosSeeds);
-    
-    console.log("Seeds de alunos executadas com sucesso!");
-    await AppDataSource.destroy();
 }
 
-runSeeds().catch(async (error) => {
-    console.error("Erro ao executar as seeds:", error);
-    if (AppDataSource.isInitialized) {
-        await AppDataSource.destroy();
-    }
-    process.exit(1);
-});
