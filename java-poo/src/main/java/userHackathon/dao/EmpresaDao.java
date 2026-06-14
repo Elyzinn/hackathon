@@ -17,16 +17,25 @@ public class EmpresaDao extends Dao{
         while(resultSet.next()){
             var e = new Empresa();
             e.setId(resultSet.getLong("id"));
-            e.setRazaoSocial(resultSet.getString("razaoSocial"));
+            e.setRazaoSocial(resultSet.getString("razao_social"));
             e.setCnpj(resultSet.getString("cnpj"));
             e.setEmail(resultSet.getString("email"));
-            e.setTelefoneContato(resultSet.getString("telefoneContato"));
+            e.setTelefoneContato(resultSet.getString("telefone_contato"));
             e.setResponsavel(resultSet.getString("responsavel"));
-            e.setIdEnderecoEmpresa(resultSet.getLong("idEnderecoEmpresa"));
+            e.setIdEnderecoEmpresa(resultSet.getLong("endereco_empresa"));
             e.setStatus(resultSet.getBoolean("status"));
 
             empresas.add(e);
         }
         return empresas;
+    }
+
+    public void atualizar(Empresa empresa) throws SQLException{
+        var sqlUpdate = "update empresas set status=? where id =?";
+        var ps = getConnection().prepareStatement(sqlUpdate);
+
+        ps.setBoolean(1,empresa.getStatus());
+
+        ps.execute();
     }
 }
