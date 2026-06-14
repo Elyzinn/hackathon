@@ -1,4 +1,4 @@
-import { hash } from "bcrypt";
+
 import { EnderecoAlunoRepository, IEnderecoAlunoRepository } from "../repositories/EnderecoAlunoRepository";
 import {  EnderecoAlunoEntity } from "../models/EnderecoAlunoEntity";
 import AppError from "../utils/AppErrors";
@@ -6,67 +6,69 @@ import AppError from "../utils/AppErrors";
 export class EnderecoAlunoService{
     constructor(private readonly endal: IEnderecoAlunoRepository){}
 
-    async getEnderecoByCidade(cidade: string): Promise<EnderecoAlunoRepository | undefined>{
-        const cidadeAluno = this.endal.getEnderecoByCidade(cidade);
+    async getEnderecoByCidade(cidade: string): Promise<EnderecoAlunoEntity | undefined>{
+        const cidadeAluno = await this.endal.getEnderecoByCidade(cidade);
         if(!cidadeAluno){
             throw new AppError(404, "Nenhum endereço encontrado");
         
         }
-        return;
-
-        
+        return cidadeAluno;
     }
 
-    async findUserById(id: number): Promise<PublicUser>{
-        const user = await this.users.getUserById(id);
-        if(!user){
-            throw new AppError(404, "User Not Found");
+    async getEnderecoById(id: number): Promise<EnderecoAlunoEntity | undefined>{
+        const endal = await this.endal.getEnderecoById(id);
+        if(!endal){
+            throw new AppError(404, "Endereço não encontrado");
         }
-        const { password: _p, ...userPublic} = user;
-        return userPublic;
+        return endal;
     }
 
-    async registerUser(input: {name: string; email: string; password: string}):Promise<PublicUser> {
-        const exists = await this.users.getUserByEmail(input.email);
-        if(exists){
-            throw new AppError(409,"E-mail already exists");
+    async getEnderecoByCep(cep: string): Promise<EnderecoAlunoEntity | undefined>{
+        const endal = await this.endal.getEnderecoByCep(cep);
+        if(!endal){
+            throw new AppError(404, "Endereço não encontrado");
         }
-        const passwordHash = await hash(input.password, 8);
-        return this.users.createUser({
-            name: input.name,
-            email: input.email,
-            password: passwordHash,
-        });
+        return endal;
     }
 
-    async update(
+    async getEnderecoByUf(uf: string): Promise<EnderecoAlunoEntity | undefined>{
+        const endal = await this.endal.getEnderecoByUf(uf);
+        if(!endal){
+            throw new AppError(404, "Endereço não encontrado");
+        }
+        return endal;
+    }
+
+    async atualizarEndereco(
         id: number,
-        data: Partial<{name: string; email: string; password: string}>,
-    ): Promise<PublicUser> {
-        const user = await this.users.getUserById(id);
-        if (!user) {
-            throw new AppError(404,"User Not Found");
+        data: Partial<{logradouro: string; num_logradouro: string; bairro: string;cep: string; cidade: string; uf: string}>,
+    ): Promise<EnderecoAlunoEntity>{ {
+        const endal = await this.endal.getEnderecoById(id);
+        if (!endal) {
+            throw new AppError(404," Endereço não encontrado");
         }
-        if(data.email && data.email !== user.email){
-            const another = await this.users.getUserByEmail(data.email);
+        if(id && id !== endal.id){
+            const another = await this.endal.getEnderecoById(id);
             if(another){
-                throw new AppError(409, "E-mail already exists");
+                throw new AppError(409, "Endereço já existe");
             }
         }
 
-        if(data.name !== undefined) user.name = data.name;
-        if(data.email !== undefined) user.email = data.email;
-        if(data.password){
-            user.password = await hash(data.password, 8);
-        }
+        if(data.logradouro !== undefined) endal.logradouro = data.logradouro;
+        if(data.num_logradouro !== undefined) endal.num_logradouro = data.num_logradouro;
+        if(data.bairro !== undefined) endal.bairro = data.bairro;
+        if(data.cep !== undefined) endal.cep = data.cep;
+        if(data.cidade !== undefined) endal.cidade = data.cidade;
+        if(data.uf !== undefined) endal.uf = data.uf;
 
-        return this.users.saveUser(user);
+        return this.endal.saveEnderecoAlunos(endal);
+        }
     }
 
-    async deleteUser(id: number): Promise<void>{
-        const ok = await this.users.deleteUser(id);
+    async deleteEnderecoAlunos(id: number): Promise<void>{
+        const ok = await this.endal.deleteEnderecoAlunos(id);
         if(!ok){
-            throw new AppError(404, "User not found");
+            throw new AppError(404, "Endereço não encontrado");
         }
     }
 }

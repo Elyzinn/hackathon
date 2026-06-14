@@ -10,8 +10,8 @@ export interface IOperadoresAlunosRepository{
 export class OperadoresAlunosRepository implements IOperadoresAlunosRepository{
     constructor(private readonly repo: Repository<OperadocoesAlunosEntity>){};
 
-    async getCandidaturaById(idoperacoes_aluno: number): Promise<OperadocoesAlunosEntity | undefined> {
-        const linha = await this.repo.findOne({where: { idoperacoes_aluno }});
+    async getCandidaturaById(id: number): Promise<OperadocoesAlunosEntity | undefined> {
+        const linha = await this.repo.findOne({where: { id }});
         return linha ?? undefined;
     }
     
