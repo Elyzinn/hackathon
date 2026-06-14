@@ -3,8 +3,8 @@ import { Column,
     PrimaryGeneratedColumn, 
 } from "typeorm";
 
-@Entity({name : "endereco_aluno"})
-export class EnderecoAlunoEntity { 
+@Entity({name : "endereco_empresa"})
+export class EnderecoEmpresaEntity { 
     @PrimaryGeneratedColumn()
     id!: number;
 
@@ -28,4 +28,4 @@ export class EnderecoAlunoEntity {
 
 }
 
-export default EnderecoAlunoEntity;
+export default EnderecoEmpresaEntity;
