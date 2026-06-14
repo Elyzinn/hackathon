@@ -1,6 +1,5 @@
 
 import { EnderecoEmpresaRepository, IEnderecoEmpresaRepository } from "../repositories/EnderecoEmpresaRepository";
-import {  EnderecoAlunoEntity } from "../models/EnderecoAlunoEntity";
 import AppError from "../utils/AppErrors";
 import { EnderecoEmpresaEntity } from "../models/EnderecoEmpresaEntity";
 
