@@ -3,15 +3,18 @@
 
     class Empresa extends ApiClient{
         public function logar($cnpj, $senha, $email):array{
-            return $this->request('POST', 'empresaLogin',[
-                'cpnj' => $cnpj,
+        //var_dump($this->request);    
+        return $this->request('POST', 'empresaLogin',[
+                'cnpj' => $cnpj,
                 'senha' => $senha,
                 'email' => $email,
             ]);
         }
 
         public function resHttp(array $res):bool{
-            return $res['status'] === 200 & isset($res['data']['message']);
+            //var_dump($res['status'] === 200); 
+            //var_dump(isset($res['data']['message']));
+            return $res['status'] === 200 && isset($res['data']['message']);
         }
 
         public function registar(
@@ -42,4 +45,3 @@
             ]);
         }
     }
-?>

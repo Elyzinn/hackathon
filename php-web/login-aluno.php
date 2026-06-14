@@ -1,5 +1,4 @@
 <?php
-    ob_start();
     session_start();
     require_once 'classes/Aluno.php';
 
@@ -16,12 +15,10 @@
             header('Location: estagioAluno.php');
         }else{
             $_SESSION['erro_login'] = 'CPF, email ou senha inválidos.';
-            ob_end_clean();
             header('Location: login-aluno.php');
         }
         exit;
     }
-    ob_end_flush(); 
 
 ?>
 <!DOCTYPE html>

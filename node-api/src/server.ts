@@ -6,6 +6,7 @@ import userRouter from './routes/userRouter';
 import { AppDataSource } from "./database/data-source";
 import { errorMiddleware } from "./middlewares/ErrorMiddleware";
 import alunoRouter from "./routes/alunosRouter";
+import empresaRouter from "./routes/empresasRouter";
 
 const server = express();
 const PORT = process.env.PORT;
@@ -15,6 +16,7 @@ server.use(express.json());
 
 server.use(userRouter);
 server.use(alunoRouter);
+server.use(empresaRouter);
 
 server.use(errorMiddleware);
 
