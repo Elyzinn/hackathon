@@ -16,12 +16,12 @@ export class VagasEntity{
 
     @Column({type: "date",})
     data_fechamento!: Date;
+
+    @Column({type: "varchar", length: 200})
+    requisitos!: string;
     
     @Column({type: "integer",})
     empresas_id!: number;
-
-    @Column({type: "varchar", length: 200})
-    requisitos_vaga!: string;
 }
 
 export default VagasEntity;

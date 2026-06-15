@@ -14,16 +14,23 @@ export class VagasController{
         data_abertura: z.date({message: "Data de abertura é obrigatória"}),
         data_fechamento: z.date({message: "Data de fechamento é obrigatória"}),
         empresas_id: z.number({message: "ID da empresa é obrigatório"}),
+        requisitos: z.string({message: "Requisitos são obrigatórios"}).max(200)
     })
+        
+    listarVagas = async(req: Request, res: Response, next: NextFunction) =>{
+        try {
+            const vagas = await this.vagasService.listarVagasAll();
+            res.json({ vagas });
+        } catch (error) {
+            next(error)
+        }
+    }
 
-    listVagas = async(req: Request, res: Response, next: NextFunction) =>{
+    CriarVagas = async(req: Request, res: Response, next: NextFunction) =>{
         try {
             const dados = this.schemaVaga.parse(req.body);
-            const vagas = await this.vagasService.listarVagasPorId(dados.id!);
-            if(!vagas){
-                throw new AppError(404, "Vaga não encontrada")
-            }
-            res.status(200).json({message: "Lista de Vagas", vagas});
+            const vagas = await this.vagasService.createVaga(dados);
+            res.status(201).json({message: "Vaga criada com sucesso", vagas});
         } catch (error) {
             next(error)
         }
