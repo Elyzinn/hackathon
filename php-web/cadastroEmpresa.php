@@ -23,6 +23,7 @@
             $mensagem = 'Erro ao cadastrar empresa. Verifique os dados e tente novamente.';
             $tipo_msg = 'erro';
         }
+        var_dump($res);
     }
 
 ?>

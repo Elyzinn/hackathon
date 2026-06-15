@@ -30,7 +30,7 @@
                 $estado,
                 $senha,
             ):array{
-            return $this->request('POST', 'empresaRegistar',[
+            return $this->request('POST', 'empresaCad',[
                 'razao_social' => $razao_social, 
                 'cnpj' => $cnpj,
                 'email' => $email,
