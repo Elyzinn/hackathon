@@ -8,6 +8,7 @@ import alunoRouter from "./routes/alunosRouter";
 import empresaRouter from "./routes/empresasRouter";
 import vagasRouter from "./routes/vagasRouter";
 import candidaturaRouter from "./routes/candidaturasRouter";
+import contratoRouter from "./routes/contratosRouter";
 
 const server = express();
 const PORT = process.env.PORT;
@@ -19,6 +20,7 @@ server.use(alunoRouter);
 server.use(empresaRouter);
 server.use(vagasRouter);
 server.use(candidaturaRouter);
+server.use(contratoRouter);
 
 server.use(errorMiddleware);
 

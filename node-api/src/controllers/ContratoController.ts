@@ -25,4 +25,13 @@ export class ContratoController{
         }
     }
 
+    listarContratos = async(req: Request, res: Response, next: NextFunction) =>{
+         try {
+            const contratos = await this.contratoService.listarContratosAll();
+            res.json({ contratos });
+        } catch (error) {
+            next(error)
+        }
+    }
+
 }

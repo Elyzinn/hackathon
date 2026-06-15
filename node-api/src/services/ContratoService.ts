@@ -16,6 +16,14 @@ export class ContratoService {
         return contratos;
     }
 
+    async listarContratosAll(): Promise<any[]>{
+        const contratos = await this.contratosRepo.getContratoAll();  
+        if(!contratos || contratos.length === 0){
+            throw new AppError(404, "Nenhum contrato encontrado");
+        }
+        return contratos;
+    }
+
     async createContrato(dados: Omit<ContratosEntity, "id">): Promise<ContratosEntity>{
         const contratos = await this.contratosRepo.createContrato(dados);
         return contratos;
