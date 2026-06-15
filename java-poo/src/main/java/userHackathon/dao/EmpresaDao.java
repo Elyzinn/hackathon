@@ -30,12 +30,13 @@ public class EmpresaDao extends Dao{
         return empresas;
     }
 
-    public void atualizar(Empresa empresa) throws SQLException{
+    public void atualizar(int id, boolean novoStatus) throws SQLException{
         var sqlUpdate = "update empresas set status=? where id =?";
-        var ps = getConnection().prepareStatement(sqlUpdate);
+        try(java.sql.PreparedStatement stmt = getConnection().prepareStatement(sqlUpdate)){
+            stmt.setBoolean(1,novoStatus);
+            stmt.setInt(2,id);
 
-        ps.setBoolean(1,empresa.getStatus());
-
-        ps.execute();
+            stmt.executeUpdate();
+        }
     }
 }
