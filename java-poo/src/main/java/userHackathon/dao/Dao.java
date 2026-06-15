@@ -9,12 +9,11 @@ public class Dao {
     public Dao(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            //user : root , password: root
             //lembrar de terminar a conexão do banco com o sistema
             this.connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/hackathon?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC",
-                    "elienay",
-                    "elienay1!"
+                    "root",
+                    "root"
             );
         } catch (Exception e) {
             System.out.println("Erro no dao " + e.getMessage());;

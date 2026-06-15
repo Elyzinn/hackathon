@@ -19,6 +19,7 @@ public class PrincipalGUI extends JFrame implements PainelDefault{
         setSize(200, 200);
 
         menuBar.add(menuEmpresa());
+        menuBar.add(menuAluno());
         setJMenuBar(menuBar);
     }
 
@@ -34,9 +35,23 @@ public class PrincipalGUI extends JFrame implements PainelDefault{
         return menu;
     }
 
+    private JMenu menuAluno(){
+        var menu = new JMenu("Alunos");
+        menu.setFont(new Font("Arial",Font.PLAIN,16));
+
+        var miAluno = new JMenuItem("Gerenciar Alunos");
+        miAluno.setFont(new Font("Arial", Font.PLAIN, 14));
+        miAluno.addActionListener(this::abrirAluno);
+
+        menu.add(miAluno);
+        return menu;
+    }
+
     private void abrirGerenciar(ActionEvent actionEvent){
         WindowManager.abrirJanela(GerenciarEmpresaGUI.class);
     }
+
+    private void abrirAluno(ActionEvent actionEvent){WindowManager.abrirJanela(AlunoGUI.class);}
 
 
 

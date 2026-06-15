@@ -1,7 +1,7 @@
 <?php
     session_start();
     require_once 'classes/Empresa.php';
-
+  
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $empresa = new Empresa();
         $res = $empresa->logar($_POST['cnpj'], $_POST['senha'], $_POST['email']);
@@ -13,10 +13,9 @@
             $_SESSION['empresalogada'] = true;
             header('Location: estagioEmpresa.php');
         }else{
-            $_SESSION['erro_login'] = 'CPNJ, email ou senha invalidos';
-            header('Location: login-empresa.php');
+           $mensagem = 'Erro ao entrar no cadastros empresa. Verifique os dados e tente novamente.';
+           $tipo_msg = 'erro'; 
         }
-        exit;
     }
 ?>
 <!DOCTYPE html>
@@ -52,6 +51,11 @@
 
                     <button type="submit" class="btn-entrar">Entrar</button>
 
+                <?php if(!empty($mensagem)): ?>
+                    <div class="msg-alerta-<?= $tipo_msg ?>">
+                        <?= htmlspecialchars($mensagem) ?>
+                    </div>
+                <?php endif; ?>
                 <div class="links-uteis">
                     <a href="recuperarSenhaE.php">Esqueceu sua senha?</a><br>
                     <a href="cadastroEmpresa.php">Criar novo cadastro</a>

@@ -2,7 +2,6 @@ import "reflect-metadata";
 import "dotenv";
 import express, {NextFunction, Request, Response} from 'express';
 import cors from 'cors';
-import userRouter from './routes/userRouter';
 import { AppDataSource } from "./database/data-source";
 import { errorMiddleware } from "./middlewares/ErrorMiddleware";
 import alunoRouter from "./routes/alunosRouter";
@@ -14,7 +13,6 @@ server.use(cors())
 
 server.use(express.json());
 
-server.use(userRouter);
 server.use(alunoRouter);
 server.use(empresaRouter);
 

@@ -1,10 +1,11 @@
-import { Repository } from "typeorm";
+import { Repository, DataSource } from "typeorm";
 import { EmpresasEntity, EmpresaPublico } from "../models/EmpresasEntity";
+import EnderecoEmpresaEntity from "../models/EnderecoEmpresaEntity";
 
 export interface IEmpresaRepository{
     getEmpresaById(id: number):Promise<EmpresasEntity | undefined>;
     getEmpresaByCnpj(cnpj:string):Promise<EmpresasEntity | undefined>;
-    createEmpresa(data: Omit<EmpresasEntity, "id">): Promise<EmpresasEntity>;
+    createEmpresa(dadosEmpresa: Omit<EmpresasEntity, "id" | "endereco_empresa">,dadosEndereco: Omit<EnderecoEmpresaEntity, "id">): Promise<EmpresasEntity>;
     saveEmpresa(entity: EmpresasEntity): Promise<EmpresasEntity>;
     deleteEmpresa(id: number): Promise<boolean>;
 }; 
@@ -15,7 +16,9 @@ function noPassword(a: EmpresasEntity): EmpresaPublico{
 }
 
 export class EmpresaRepository implements IEmpresaRepository{
-    constructor(private readonly repo: Repository<EmpresasEntity>){};
+    constructor(private readonly repo: Repository<EmpresasEntity>,
+        private readonly dataSource: DataSource
+    ){};
 
     async getEmpresaById(id: number): Promise<EmpresasEntity | undefined> {
         const linha = await this.repo.findOne({where: { id }});
@@ -27,10 +30,30 @@ export class EmpresaRepository implements IEmpresaRepository{
         return aluno ?? undefined;
     }
 
-    async createEmpresa(dados: Omit<EmpresasEntity, "id">): Promise<EmpresasEntity> {
-        const dadosIn = this.repo.create(dados);
-        const save = await this.repo.save(dadosIn);
-        return(save);
+    async createEmpresa(dadosEmpresa: Omit<EmpresasEntity, "id" | "endereco_empresa">, dadosEndereco: Omit<EnderecoEmpresaEntity, "id">): Promise<EmpresasEntity> {
+        const qR = this.dataSource.createQueryRunner();
+        await qR.connect();
+        await qR.startTransaction();
+
+        try {
+            const endereco = qR.manager.create(EnderecoEmpresaEntity, dadosEndereco);
+            await qR.manager.save(endereco);
+
+            const empresa = qR.manager.create(EmpresasEntity,{
+                ...dadosEmpresa,
+                endereco_empresa: endereco.id,
+            });
+
+            await qR.manager.save(empresa);
+
+            await qR.commitTransaction();
+            return empresa;
+        } catch (error) {
+            await qR.rollbackTransaction(); 
+            throw error;
+        }finally{
+            await qR.release();
+        }
     }
     
     async saveEmpresa(entity: EmpresasEntity): Promise<EmpresasEntity> {

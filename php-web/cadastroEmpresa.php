@@ -1,6 +1,5 @@
 <?php
-    require_once 'classes/Empresa.php';
-
+    require_once 'classes/Empresa.php';   
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $empresa = new Empresa();
         $res = $empresa->registar(
@@ -18,7 +17,11 @@
             $_POST['senha']
             );
         if($empresa->resHttp($res)){
-            echo "Empresa cadastrada com sucesso! Aguardando Aprovação";
+            $mensagem = 'Empresa cadastrada com sucesso! Aguardando Aprovação.';
+            $tipo_msg = 'sucesso';
+        } else {
+            $mensagem = 'Erro ao cadastrar empresa. Verifique os dados e tente novamente.';
+            $tipo_msg = 'erro';
         }
     }
 
@@ -41,7 +44,7 @@
                 Empresa e Endereço cadastrados com sucesso!!!
             </div>
 
-            <form id="form-empresa" onsubmit="salvarEmpresaCRUD(event)">
+            <form method="POST">
                 
                 <div class="cadastro-group">
                     <label for="razao_social">Razão Social</label>
@@ -107,7 +110,11 @@
 
                 <button type="submit" class="btn-cadastro">Cadastrar Empresa</button>
             </form>
-
+            <?php if(!empty($mensagem)): ?>
+                <div class="msg-alerta-<?= $tipo_msg ?>">
+                    <?= htmlspecialchars($mensagem) ?>
+                </div>
+            <?php endif; ?>
             <div class="cadastro-links">
                 <a href="login-empresa.php">Voltar para o Login da Empresa</a>
             </div>

@@ -20,7 +20,7 @@ CREATE TABLE endereco_empresa (
     uf VARCHAR(100)
 );
 
--- Criação da tabela: alunos
+-- Criação da tabela: alunos (Importante: Nome no PLURAL)
 CREATE TABLE alunos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
@@ -67,7 +67,7 @@ CREATE TABLE candidaturas (
     vagas_id INT,
     PRIMARY KEY (aluno_idaluno, vagas_id),
     CONSTRAINT FK_candidatura_aluno FOREIGN KEY (aluno_idaluno) 
-        REFERENCES aluno(id) ON DELETE CASCADE ON UPDATE CASCADE,
+        REFERENCES alunos(id) ON DELETE CASCADE ON UPDATE CASCADE, -- Corrigido para 'alunos'
     CONSTRAINT FK_candidatura_vagas FOREIGN KEY (vagas_id) 
         REFERENCES vagas(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -77,12 +77,12 @@ CREATE TABLE contratos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     vagas_id INT,
     aluno_id INT,
-    date_inicio DATE,
+    data_inicio DATE, -- Corrigido de date_inicio para data_inicio
     data_fim DATE,
     CONSTRAINT FK_contrato_vagas FOREIGN KEY (vagas_id) 
         REFERENCES vagas(id) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT FK_contrato_aluno FOREIGN KEY (aluno_id) 
-        REFERENCES aluno(id) ON DELETE RESTRICT ON UPDATE CASCADE
+        REFERENCES alunos(id) ON DELETE RESTRICT ON UPDATE CASCADE -- Corrigido para 'alunos'
 );
 
 -- Criação da tabela: operadores
@@ -104,14 +104,14 @@ CREATE TABLE operacoes_aluno (
     CONSTRAINT FK_op_aluno_operador FOREIGN KEY (operadores_id) 
         REFERENCES operadores(id) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT FK_op_aluno_aluno FOREIGN KEY (aluno_id) 
-        REFERENCES aluno(id) ON DELETE CASCADE ON UPDATE CASCADE
+        REFERENCES alunos(id) ON DELETE CASCADE ON UPDATE CASCADE -- Corrigido para 'alunos'
 );
 
 -- Criação da tabela: operacoes_empresa
 CREATE TABLE operacoes_empresa (
     id INT AUTO_INCREMENT PRIMARY KEY,
     descricao VARCHAR(100),
-    date_operacao DATETIME,
+    data_operacao DATETIME, -- Corrigido de date_operacao para data_operacao
     operadores_id INT,
     empresas_id INT,
     CONSTRAINT FK_op_empresa_operador FOREIGN KEY (operadores_id) 

@@ -20,17 +20,14 @@ public class ActionManager {
             String idTexto = idField.getText().trim();
             if (!idTexto.isEmpty()){
                 try{
-                    Long id = Long.valueOf(idTexto);
+                    int id = Integer.parseInt(idTexto);
 
-                    Empresa empresa = new Empresa();
-                    empresa.setId(id);
-                    empresa.setStatus(novoStatus);
-
-                    service.atualizar(empresa);
+                    service.atualizar(id, novoStatus);
 
                     //vai executar a limpeza feita na GUI
-                    atualizarTela.run();
-
+                    if(atualizarTela != null) {
+                        atualizarTela.run();
+                    }
                 } catch (Exception ex) {
                     System.out.println("Error" + ex.getMessage());
                 }
