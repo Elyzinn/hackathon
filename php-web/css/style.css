@@ -237,3 +237,23 @@ body.pag-formulario-longo {
     height: auto;      /* Remove a altura travada de 100vh */
     display: block;    /* Desativa o alinhamento rígido do body */
 }
+
+.msg-alerta-erro {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin: 10px 0;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.msg-alerta-sucesso {
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin: 10px 0;
+    font-size: 0.9rem;
+    text-align: center;
+}
