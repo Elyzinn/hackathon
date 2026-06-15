@@ -7,7 +7,7 @@
         $res = $empresa->logar($_POST['cnpj'], $_POST['senha'], $_POST['email']);
         //var_dump($res);
         //var_dump($empresa->resHttp($res));
-        if ($empresa->resHttp($res)){
+        if ($empresa->loginSucesso($res)){
             $_SESSION['empresa_cnpj'] = $_POST['cnpj'];
             $_SESSION['empresa_email'] = $_POST['email'];
             $_SESSION['empresalogada'] = true;
