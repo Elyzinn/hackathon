@@ -17,19 +17,19 @@ const opeAlunos = [
     {
         descricao: 'Validação de documentos',
         data: new Date('2026-03-05'),
-        operadores: 5,
+        operadores: 3,
         aluno: 5,
     },
     {
         descricao: 'Cadastro de aluno realizado',
         data: new Date('2026-03-20'),
-        operadores: 4,
+        operadores: 3,
         aluno: 3,
     },
     {
         descricao: 'Atualização de período letivo',
         data: new Date('2026-04-01'),
-        operadores: 4,
+        operadores: 2,
         aluno: 4,
     },
 ]

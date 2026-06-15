@@ -13,7 +13,7 @@
             $_SESSION['empresalogada'] = true;
             header('Location: estagioEmpresa.php');
         }else{
-           $mensagem = 'Erro ao cadastrar empresa. Verifique os dados e tente novamente.';
+           $mensagem = 'Erro ao entrar no cadastros empresa. Verifique os dados e tente novamente.';
            $tipo_msg = 'erro'; 
         }
     }

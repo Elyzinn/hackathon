@@ -32,7 +32,7 @@ export class AlunoController{
     loginAluno = async(req: Request, res: Response, next: NextFunction) => {
         try {
             const dados = this.schemaLogin.parse(req.body);
-            const login = this.alunoSerivice.loginAluno(dados);
+            const login = await this.alunoSerivice.loginAluno(dados);
             if(!login){
                 throw new AppError(404, "Erro ao logar");
             }

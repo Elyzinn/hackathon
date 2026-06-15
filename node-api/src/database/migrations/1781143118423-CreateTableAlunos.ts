@@ -17,6 +17,7 @@ export class CreateTableAlunos1781143118423 implements MigrationInterface {
                     { name: "curso", type: "varchar", length: "100", isNullable: false },
                     { name: "periodo", type: "int", isNullable: false },
                     { name: "data_nasc", type: "date", isNullable: false },
+                    { name: "apto", type: "tinyint", default: false },
                     { name: "endereco_aluno", type: "int", isNullable: false }
                     ]
                 })

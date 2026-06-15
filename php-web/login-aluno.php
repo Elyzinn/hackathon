@@ -5,8 +5,6 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $aluno = new Aluno();
         $res = $aluno->logar($_POST['cpf'],$_POST['senha'], $_POST['email']);
-        //var_dump($res);
-        //die();
         //var_dump($aluno->loginSucesso($res));
         if ($aluno->loginSucesso($res)){
             $_SESSION['aluno_cpf'] = $_POST['cpf'];
