@@ -8,13 +8,13 @@
             $_POST['email'], 
             $_POST['telefone_contato'], 
             $_POST['responsavel'],
+            $_POST['senha'],
             $_POST['cep'],
             $_POST['logradouro'],
             $_POST['numero'],
             $_POST['bairro'],
             $_POST['cidade'],
-            $_POST['estado'],
-            $_POST['senha']
+            $_POST['estado']
             );
         if($empresa->resHttp($res)){
             $mensagem = 'Empresa cadastrada com sucesso! Aguardando Aprovação.';
@@ -23,6 +23,7 @@
             $mensagem = 'Erro ao cadastrar empresa. Verifique os dados e tente novamente.';
             $tipo_msg = 'erro';
         }
+        //var_dump($res);
     }
 
 ?>
@@ -105,7 +106,7 @@
 
                 <div class="cadastro-group" style="margin-top: 20px;">
                     <label for="senha">Criar Senha</label>
-                    <input type="password" name="senha" required placeholder="Crie uma senha corporativa">
+                    <input type="password" name="senha" required placeholder="Crie uma senha forte (xJ#9vL$2mQ!8pZ@)">
                 </div>
 
                 <button type="submit" class="btn-cadastro">Cadastrar Empresa</button>
