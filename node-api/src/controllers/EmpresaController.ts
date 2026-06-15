@@ -13,14 +13,9 @@ export class EmpresaController {
         email: z.string().email(),
     })
     private schemaCadastrar = z.object({
-        razao_social: z.string({message: "Razão social é obrigatória"}),
         razao_social: z.string({ message: "Razão social é obrigatória" }).max(100),
         cnpj: z.string({ message: "CNPJ é obrigatório" }).length(14),
         email: z.string().email(),
-        telefone_contato: z.string({message: "Telefone de contato é obrigatório"}),
-        responsavel: z.string({message: "Responsável é obrigatório"}),
-        status: z.boolean().default(false),
-        endereco_empresa: z.number({message: "Endereço da empresa é obrigatório"})
         telefone_contato: z.string().min(10).max(11),
         responsavel: z.string().max(100),
         senha: z.string({ message: "Senha é obrigatorio" })
@@ -62,20 +57,6 @@ export class EmpresaController {
         }
     }
 
-    cadastrarEmpresa = async(req: Request, res: Response, next: NextFunction) => {
-        try {
-            const dados = this.schemaCadastrar.parse(req.body);
-            const empresa = await this.empresaService.cadastrarEmpresa(dados);
-            if(!empresa){
-                throw new AppError(400, "Erro ao cadastrar empresa");
-            }
-            res.status(201).json({message: "Empresa cadastrada"})
-        } catch (error) {
-            next(error)
-        }
-        }
-    }
-
     cadastrarEmpresa = async (req:Request, res: Response, next: NextFunction) => {
         try {
             const dados = this.schemaCadastrar.parse(req.body);
@@ -84,5 +65,6 @@ export class EmpresaController {
         } catch (error) {
             next(error);
         }
+        }
     }
-}
+
