@@ -12,7 +12,9 @@ export class CreateTableVagas1781144424514 implements MigrationInterface {
                     { name: "vaga_preenchida", type: "tinyint", isNullable: false },
                     { name: "data_abertura", type: "date", isNullable: false },
                     { name: "data_fechamento", type: "date", isNullable: false },
-                    { name: "empresas_id", type: "int", isNullable: false }
+                    { name: "requisitos", type: "varchar", length: "200", isNullable: false },
+                    { name: "empresas_id", type: "int", isNullable: false },
+                    
                 ]
             })
         );

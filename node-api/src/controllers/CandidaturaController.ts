@@ -7,36 +7,21 @@ import z from "zod";
 export class CandidaturaController {
     constructor(private readonly candidaturaService: CandidaturaService){};
 
-    private schemaLogin = z.object({
-        cpf: z.string({message: "CPF é obrigatório"}).length(11),
-        senha: z.string({message: "Senha é obrigatorio"}),
-        email: z.string().email(),
+    private schemaCandidatura = z.object({
+        id: z.number().optional(),
+        aluno_id: z.number({message: "Aluno ID é obrigatório"}),
+        vagas_id: z.number({message: "Vaga ID é obrigatório"}),
+        data_candidatura: z.date({message: "Data da candidatura é obrigatória"}),
     })
 
     realizarCandidatura = async(req: Request, res: Response, next: NextFunction) =>{
         try {
-            const id = Number(req.params.id);
-            if(!Number.isInteger(id) || id < 1){
-                throw new AppError(400, "Parametro errado");
-            }
-            const candidaturas = await this.candidaturaService.realizarCandidatura(id);
+            const dados = this.schemaCandidatura.parse(req.body);
+            const candidaturas = await this.candidaturaService.createCandidatura(dados);
             if(!candidaturas){
-                throw new AppError(404, "Não encontrado")
+                throw new AppError(400, "Erro ao realizar candidatura")
             }
-            res.json({ candidaturas });
-        } catch (error) {
-            next(error)
-        }
-    }
-
-    loginAluno = async(req: Request, res: Response, next: NextFunction) => {
-        try {
-            const dados = this.schemaLogin.parse(req.body);
-            const login = this.alunoSerivice.loginAluno(dados);
-            if(!login){
-                throw new AppError(404, "Erro ao logar");
-            }
-            res.status(200).json({message: "Aluno logado"})
+            res.status(201).json({message: "Candidatura criada", candidaturas});
         } catch (error) {
             next(error)
         }

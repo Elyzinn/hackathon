@@ -11,6 +11,9 @@ export class CandidaturasEntity{
     @Column({type: "integer"})
     vagas_id!: number;
 
+    @Column({type: "date"})
+    data_candidatura!: Date;
+
 }
 
 export default CandidaturasEntity;

@@ -15,6 +15,15 @@ export class VagasService{
         return vagas;
     }
 
+    async listarVagasAll(): Promise<any[]>{
+        const vagas = await this.vagasRepo.getVagaAll();  
+        if(!vagas || vagas.length === 0){
+            throw new AppError(404, "Nenhuma vaga encontrada");
+        }
+        return vagas;
+    }
+
+
     async createVaga(dados: Omit<VagasEntity, "id">): Promise<VagasEntity>{
         const vagas = await this.vagasRepo.createVaga(dados);
         return vagas;
