@@ -157,3 +157,107 @@
         grid-template-columns: 1fr; 
     }
 }
+
+/* ==========================================================================
+   COMPONENTES CORPORATIVOS DA EMPRESA (SEM BOOTSTRAP)
+   ========================================================================== */
+
+/* Gerenciamento de Exibição das Abas */
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
+
+/* Links Ativos na Barra Lateral */
+.sidebar ul li a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-left: 4px solid #ffffff;
+    font-weight: 700;
+}
+
+/* Itens de lista (Vagas da empresa) */
+.item-lista-painel {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Botão de Destaque no Hero Banner */
+.btn-principal {
+    background-color: #0084ff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-principal:hover {
+    background-color: #0066cc;
+}
+
+/* Tabelas Administrativas */
+.tabela-padrao {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    margin-top: 10px;
+}
+.tabela-padrao th, 
+.tabela-padrao td {
+    border: 1px solid #e0e0e0;
+    padding: 12px;
+    text-align: left;
+    font-size: 0.9rem;
+}
+.tabela-padrao th {
+    background-color: #f4f6f9;
+    color: #115c74;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+/* Botões de Ação dentro das Tabelas */
+.btn-acao-primario {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-acao-secundario {
+    background-color: transparent;
+    color: #0084ff;
+    border: 1px solid #0084ff;
+    padding: 5px 11px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 5px;
+}
+.btn-acao-primario:hover { background-color: #218838; }
+.btn-acao-secundario:hover { background-color: rgba(0, 132, 255, 0.05); }
+
+/* Badges / Etiquetas de Status */
+.badge {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+.status-aprovado { background-color: #d4edda; color: #155724; }
+.status-analise { background-color: #d1ecf1; color: #0c5460; }
