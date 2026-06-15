@@ -9,9 +9,7 @@ export class AlunoController{
 
     private schemaLogin = z.object({
         cpf: z.string({message: "CPF é obrigatório"}).length(11),
-        senha: z.string({message: "Senha é obrigatorio"})
-        .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/)
-        .regex(/[0-9]/),
+        senha: z.string({message: "Senha é obrigatorio"}),
         email: z.string().email(),
     })
 

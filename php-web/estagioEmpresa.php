@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    if(!isset($_SESSION['empresalogada']) || !$_SESSION['empresalogada']){
+        header('Location: login-empresa.php');
+        exit;
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

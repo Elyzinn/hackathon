@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Senha - UniALFA</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
 </head>
 <body>
 
@@ -30,14 +31,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-    function executarRecuperacao(event) {
-        event.preventDefault();
-        document.getElementById('form-recuperar').style.display = 'none';
-        document.getElementById('msg-sucesso').style.display = 'block';
-    }
-    </script>
-
 </body>
 </html>

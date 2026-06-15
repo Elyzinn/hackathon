@@ -9,6 +9,12 @@ export class EmpresaController{
 
     private schemaLogin = z.object({
         cnpj: z.string({message: "CNPJ é obrigatório"}).length(14),
+        senha: z.string({message: "Senha é obrigatorio"}),
+        email: z.string().email(),
+    })
+
+    private schemaCadastrar = z.object({
+        cnpj: z.string({message: "CNPJ é obrigatório"}).length(14),
         senha: z.string({message: "Senha é obrigatorio"})
         .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/)
         .regex(/[0-9]/),
