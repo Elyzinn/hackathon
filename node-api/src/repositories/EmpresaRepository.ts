@@ -9,11 +9,10 @@ export interface IEmpresaRepository{
     saveEmpresa(entity: EmpresasEntity): Promise<EmpresasEntity>;
     deleteEmpresa(id: number): Promise<boolean>;
 }; 
-
-function noPassword(a: EmpresasEntity): EmpresaPublico{
-    const { senha: _s, ...rest} = a;
-    return rest;
-}
+// function noPassword(a: EmpresasEntity): EmpresaPublico{
+   // const { senha: _s, ...rest} = a;
+   //return rest;
+//}
 
 export class EmpresaRepository implements IEmpresaRepository{
     constructor(private readonly repo: Repository<EmpresasEntity>,
