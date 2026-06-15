@@ -14,11 +14,16 @@ export class EmpresaController{
     })
 
     private schemaCadastrar = z.object({
+        razao_social: z.string({message: "Razão social é obrigatória"}),
         cnpj: z.string({message: "CNPJ é obrigatório"}).length(14),
         senha: z.string({message: "Senha é obrigatorio"})
         .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/)
         .regex(/[0-9]/),
         email: z.string().email(),
+        telefone_contato: z.string({message: "Telefone de contato é obrigatório"}),
+        responsavel: z.string({message: "Responsável é obrigatório"}),
+        status: z.boolean().default(false),
+        endereco_empresa: z.number({message: "Endereço da empresa é obrigatório"})
     })
 
     listEmpresaPorId = async(req: Request, res: Response, next: NextFunction) =>{
@@ -40,7 +45,7 @@ export class EmpresaController{
     loginEmpresa = async(req: Request, res: Response, next: NextFunction) => {
         try {
             const dados = this.schemaLogin.parse(req.body);
-            const login = this.empresaService.loginEmpresa(dados);
+            const login = await this.empresaService.loginEmpresa(dados);
             if(!login){
                 throw new AppError(404, "Erro ao logar");
             }
@@ -49,4 +54,17 @@ export class EmpresaController{
             next(error)
         }
     }
+
+    cadastrarEmpresa = async(req: Request, res: Response, next: NextFunction) => {
+        try {
+            const dados = this.schemaCadastrar.parse(req.body);
+            const empresa = await this.empresaService.cadastrarEmpresa(dados);
+            if(!empresa){
+                throw new AppError(400, "Erro ao cadastrar empresa");
+            }
+            res.status(201).json({message: "Empresa cadastrada"})
+        } catch (error) {
+            next(error)
+        }
+        }
 }

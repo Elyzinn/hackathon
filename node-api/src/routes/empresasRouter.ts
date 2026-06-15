@@ -13,5 +13,6 @@ const empresaController = new EmpresaController(empresaService);
 
 empresaRouter.get("/empresas/:id", empresaController.listEmpresaPorId);
 empresaRouter.post("/empresaLogin", empresaController.loginEmpresa);
+empresaRouter.post("/empresaCadastrar", empresaController.cadastrarEmpresa);
 
 export default empresaRouter;
