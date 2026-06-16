@@ -46,4 +46,8 @@ public class Relatorios {
     public void setId_contratos(Long id_contratos) {
         this.id_contratos = id_contratos;
     }
+
+    public String getDescricao() {
+        return getDescricao();
+    }
 }

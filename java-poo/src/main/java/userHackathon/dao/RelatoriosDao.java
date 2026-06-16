@@ -26,4 +26,19 @@ public class RelatoriosDao extends Dao {
         }
         return relatorios;
     }
+    public boolean salvar(Relatorios relatorio) throws SQLException {
+        String sql = "INSERT INTO relatorios (id_empresa, id_alunos, id_vagas, id_candidaturas, id_contratos) VALUES (?, ?, ?, ?, ?)";
+
+        try (var stmt = getConnection().prepareStatement(sql)) {
+            stmt.setLong(1, relatorio.getId_empresas());
+            stmt.setLong(2, relatorio.getId_alunos());
+            stmt.setLong(3, relatorio.getId_vagas());
+            stmt.setLong(4, relatorio.getId_candidaturas());
+            stmt.setLong(5, relatorio.getId_contratos());
+
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0; // Retorna true se inseriu com sucesso
+        }
+    }
 }
+

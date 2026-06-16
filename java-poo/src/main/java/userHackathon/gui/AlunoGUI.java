@@ -122,6 +122,7 @@ public class AlunoGUI extends JFrame implements PainelDefault{
         painel.add(btnExportarPdf);
 
         btnImportar.addActionListener(e -> acaoImportarTxt());
+        btnIncluir.addActionListener(e -> acaoIncluirAluno());
         btnExportarPdf.addActionListener(e -> acaoExportarPdf());
 
 
@@ -176,6 +177,37 @@ public class AlunoGUI extends JFrame implements PainelDefault{
             } catch (Exception e) {
                 System.out.println("Error" + e.getMessage());
             }
+        }
+    }
+
+    private void acaoIncluirAluno() {
+        if (nomeField.getText().trim().isEmpty() || cpfField.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, preencha pelo menos o Nome e o CPF.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            userHackathon.model.Aluno novoAluno = new userHackathon.model.Aluno();
+            novoAluno.setNome(nomeField.getText().trim());
+            novoAluno.setCpf(cpfField.getText().trim());
+            novoAluno.setEmail(emailField.getText().trim());
+            novoAluno.setTelefone(telefoneField.getText().trim());
+            novoAluno.setCurso(cursoField.getText().trim());
+
+            boolean salvou = service.salvarAluno(novoAluno);
+            if (salvou) {
+                JOptionPane.showMessageDialog(this, "Aluno incluído com sucesso!");
+
+                tabela.setModel(getTabelaModel());
+
+                limparCampos();
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao salvar o aluno no banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro inesperado: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 
