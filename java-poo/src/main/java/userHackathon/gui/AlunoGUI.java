@@ -4,6 +4,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.*;
 import userHackathon.service.AlunoService;
+import userHackathon.util.ActionManager;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -27,6 +28,13 @@ public class AlunoGUI extends JFrame implements PainelDefault{
     private JTextField periodoField = new JTextField();
     private JTextField dataNascimentoField = new JTextField();
     private JTextField idEnderecoAlunoField = new JTextField();
+    private JTextField logradouroField = new JTextField();
+    private JTextField numLogradouroField = new JTextField();
+    private JTextField bairroField = new JTextField();
+    private JTextField cepField = new JTextField();
+    private JTextField cidadeField = new JTextField();
+    private JTextField ufField = new JTextField();
+    private JTextField raField = new JTextField();
 
     private JLabel idLabel = new JLabel("ID");
     private JLabel nomeLabel = new JLabel("Nome");
@@ -37,14 +45,16 @@ public class AlunoGUI extends JFrame implements PainelDefault{
     private JLabel periodoLabel = new JLabel("Periodo");
     private JLabel dataNascimentoLabel = new JLabel("Data de Nascimento");
     private JLabel idEnderecoAlunoLabel = new JLabel("Endereço");
+    private JLabel logradouroLabel = new JLabel("Logradouro");
+    private JLabel numLogradouroLabel = new JLabel("Nº");
+    private JLabel bairroLabel = new JLabel("Bairro");
+    private JLabel cepLabel = new JLabel("CEP");
+    private JLabel cidadeLabel = new JLabel("Cidade");
+    private JLabel ufLabel = new JLabel("UF");
+    private JLabel raLabel = new JLabel("RA");
 
     private JButton btnIncluir = new JButton("Incluir");
     private JButton btnImportar = new JButton("Importar");
-    private JButton btnExportarPdf = new JButton("Exportar PDF");
-    private JButton btnExportarTxt = new JButton("Exportar TXT");
-    private JButton btnExportarCsv = new JButton("Exportar CSV");
-
-
 
     private JTable tabela = new JTable();
     private JScrollPane scrollPane;
@@ -72,42 +82,49 @@ public class AlunoGUI extends JFrame implements PainelDefault{
         idField.setBounds(30,260,50,30);
 
         nomeLabel.setBounds(100,240,300,20);
-        nomeField.setBounds(100,260,300,30);
+        nomeField.setBounds(100,260,200,30);
 
-        cpfLabel.setBounds(460,240,100,20);
-        cpfField.setBounds(460,260,160,30);
+        cpfLabel.setBounds(320,240,100,20);
+        cpfField.setBounds(320,260,100,30);
 
         emailLabel.setBounds(30,305,100,20);
-        emailField.setBounds(30,325,240,30);
+        emailField.setBounds(30,325,170,30);
 
-        telefoneLabel.setBounds(285,305,150,20);
-        telefoneField.setBounds(285,325,220,30);
+        telefoneLabel.setBounds(220,305,150,20);
+        telefoneField.setBounds(220,325,100,30);
 
-        cursoLabel.setBounds(520,305,150,20);
-        cursoField.setBounds(520,325,150,30);
+        cursoLabel.setBounds(350,305,150,20);
+        cursoField.setBounds(350,325,150,30);
 
-        periodoLabel.setBounds(30,370,100,20);
-        periodoField.setBounds(30,390,100,30);
+        periodoLabel.setBounds(520,305,100,20);
+        periodoField.setBounds(520,325,50,30);
 
-        dataNascimentoLabel.setBounds(520,370,100,20);
-        dataNascimentoField.setBounds(520,390,100,30);
+        dataNascimentoLabel.setBounds(440,240,100,20);
+        dataNascimentoField.setBounds(440,260,100,30);
 
-        idEnderecoAlunoLabel.setBounds(320,370,100,20);
-        idEnderecoAlunoField.setBounds(320,390,100,30);
+        raLabel.setBounds(560,240,50,20);
+        raField.setBounds(560,260,50,30);
 
-        btnExportarTxt.setBounds(370, 520, 150, 40);
-        painel.add(btnExportarTxt);
-        btnExportarTxt.addActionListener(e -> acaoExportarTxt());
+        idEnderecoAlunoLabel.setBounds(30,370,50,20);
+        idEnderecoAlunoField.setBounds(30,390,30,30);
+
+        logradouroLabel.setBounds(90,370,150,20);
+        logradouroField.setBounds(90,390,150,30);
+
+        numLogradouroLabel.setBounds(260,370,30,20);
+        numLogradouroField.setBounds(260,390,50,30);
+
+        bairroLabel.setBounds(320,370,120,20);
+        bairroField.setBounds(320,390,120,30);
+
+        cepLabel.setBounds(450,370,100,20);
+        cepField.setBounds(450,390,100,30);
+
+        ufLabel.setBounds(570,370,30,20);
+        ufField.setBounds(570,390,30,30);
 
         btnImportar.setBounds(100, 470, 150, 40);
-        btnIncluir.setBounds(270, 470, 150, 40);
-        btnExportarPdf.setBounds(440, 470, 150, 40);
-
-        btnExportarCsv.setBounds(165, 525, 150, 40);
-        btnExportarTxt.setBounds(335, 525, 150, 40);
-
-        painel.add(btnExportarCsv);
-        btnExportarCsv.addActionListener(e -> acaoExportarCsv());
+        btnIncluir.setBounds(450, 470, 150, 40);
 
         painel.add(idLabel);painel.add(idField);
         painel.add(nomeLabel);painel.add(nomeField);
@@ -117,14 +134,29 @@ public class AlunoGUI extends JFrame implements PainelDefault{
         painel.add(cursoLabel);painel.add(cursoField);
         painel.add(periodoLabel);painel.add(periodoField);
         painel.add(dataNascimentoLabel);painel.add(dataNascimentoField);
+        painel.add(raLabel);painel.add(raField);
         painel.add(idEnderecoAlunoLabel);painel.add(idEnderecoAlunoField);
+        painel.add(logradouroLabel);painel.add(logradouroField);
+        painel.add(numLogradouroLabel);painel.add(numLogradouroField);
+        painel.add(cepLabel);painel.add(cepField);
+        painel.add(bairroLabel);painel.add(bairroField);
+        painel.add(cidadeLabel);painel.add(cidadeField);
+        painel.add(ufLabel);painel.add(ufField);
+
         painel.add(btnIncluir);painel.add(btnImportar);
-        painel.add(btnExportarPdf);
 
         btnImportar.addActionListener(e -> acaoImportarTxt());
-        btnExportarPdf.addActionListener(e -> acaoExportarPdf());
 
-
+        ActionManager.configurarBotaoIncluirAluno(
+                btnIncluir,
+                nomeField, cpfField, emailField, telefoneField, cursoField, periodoField, dataNascimentoField,
+                logradouroField, numLogradouroField, bairroField, cepField, cidadeField, ufField,
+                this.service,
+                () -> {
+                    limparCampos();
+                    tabela.setModel(getTabelaModel());
+                }
+        );
 
         getContentPane().add(painel, BorderLayout.CENTER);
     }
@@ -161,6 +193,24 @@ public class AlunoGUI extends JFrame implements PainelDefault{
             dataNascimentoField.setText(aluno.getDataNascimento());
             idEnderecoAlunoField.setText(aluno.getIdEnderecoAluno().toString());
 
+            if (aluno.getEndereco() != null) {
+
+                logradouroField.setText(aluno.getEndereco().getLogradouro());
+                numLogradouroField.setText(aluno.getEndereco().getNumLogradouro());
+                bairroField.setText(aluno.getEndereco().getBairro());
+                cepField.setText(aluno.getEndereco().getCep());
+                cidadeField.setText(aluno.getEndereco().getCidade());
+                ufField.setText(aluno.getEndereco().getUf());
+            } else {
+
+                logradouroField.setText("");
+                numLogradouroField.setText("");
+                bairroField.setText("");
+                cepField.setText("");
+                cidadeField.setText("");
+                ufField.setText("");
+            }
+
         }
     }
 
@@ -179,129 +229,7 @@ public class AlunoGUI extends JFrame implements PainelDefault{
         }
     }
 
-    private void acaoExportarTxt() {
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setSelectedFile(new File("relatorio_alunos.txt"));
-        int retorno = fileChooser.showSaveDialog(this);
 
-        if (retorno == JFileChooser.APPROVE_OPTION) {
-            File arquivoSelecionado = fileChooser.getSelectedFile();
-
-            if (!arquivoSelecionado.getName().endsWith(".txt")) {
-                arquivoSelecionado = new File(arquivoSelecionado.getAbsolutePath() + ".txt");
-            }
-
-            try {
-                gerarTxt(arquivoSelecionado);
-                JOptionPane.showMessageDialog(this, "TXT exportado com sucesso!");
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Erro ao exportar: " + e.getMessage());
-            }
-        }
-    }
-
-    private void gerarTxt(File arquivo) throws Exception {
-        java.util.List<userHackathon.model.Aluno> alunos = service.listar();
-
-        try (java.io.BufferedWriter writer = new java.io.BufferedWriter(new java.io.FileWriter(arquivo))) {
-            writer.write("ID | Nome | CPF");
-            writer.newLine();
-            writer.write("--------------------------------");
-            writer.newLine();
-
-            for (userHackathon.model.Aluno aluno : alunos) {
-                writer.write(aluno.getId() + " | " + aluno.getNome() + " | " + aluno.getCpf());
-                writer.newLine();
-            }
-        }
-    }
-
-    // NOVO
-    private void acaoExportarPdf() {
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setSelectedFile(new File("relatorio_alunos.pdf"));
-        int retorno = fileChooser.showSaveDialog(this);
-
-        if (retorno == JFileChooser.APPROVE_OPTION) {
-            File arquivoSelecionado = fileChooser.getSelectedFile();
-
-            if (!arquivoSelecionado.getName().endsWith(".pdf")) {
-                arquivoSelecionado = new File(arquivoSelecionado.getAbsolutePath() + ".pdf");
-            }
-
-            try {
-                gerarPdf(arquivoSelecionado);
-                JOptionPane.showMessageDialog(this, "Relatório exportado com sucesso!");
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Erro ao exportar: " + e.getMessage());
-            }
-        }
-    }
-
-    private void gerarPdf(File arquivo) throws Exception {
-        java.util.List<userHackathon.model.Aluno> alunos = service.listar();
-
-        Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(arquivo));
-        document.open();
-
-        Font fonteTitulo = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
-        document.add(new Paragraph("Relatório de Alunos", fonteTitulo));
-        document.add(new Paragraph(" "));
-
-        PdfPTable tabela = new PdfPTable(3);
-        tabela.setWidthPercentage(100);
-
-        tabela.addCell("ID");
-        tabela.addCell("Nome");
-        tabela.addCell("CPF");
-
-        for (userHackathon.model.Aluno aluno : alunos) {
-            tabela.addCell(aluno.getId().toString());
-            tabela.addCell(aluno.getNome());
-            tabela.addCell(aluno.getCpf());
-        }
-
-        document.add(tabela);
-        document.close();
-    }
-
-    private void acaoExportarCsv() {
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setSelectedFile(new File("relatorio_alunos.csv"));
-        int retorno = fileChooser.showSaveDialog(this);
-
-        if (retorno == JFileChooser.APPROVE_OPTION) {
-            File arquivoSelecionado = fileChooser.getSelectedFile();
-
-            if (!arquivoSelecionado.getName().endsWith(".csv")) {
-                arquivoSelecionado = new File(arquivoSelecionado.getAbsolutePath() + ".csv");
-            }
-
-            try {
-                gerarCsv(arquivoSelecionado);
-                JOptionPane.showMessageDialog(this, "CSV exportado com sucesso!");
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Erro ao exportar: " + e.getMessage());
-            }
-        }
-    }
-
-    private void gerarCsv(File arquivo) throws Exception {
-        java.util.List<userHackathon.model.Aluno> alunos = service.listar();
-
-        try (java.io.BufferedWriter writer = new java.io.BufferedWriter(new java.io.FileWriter(arquivo))) {
-            // Cabeçalho
-            writer.write("ID,Nome,CPF");
-            writer.newLine();
-
-            // Linhas de dados
-            for (userHackathon.model.Aluno aluno : alunos) {
-                writer.write(aluno.getId() + "," + aluno.getNome() + "," + aluno.getCpf());
-                writer.newLine();
-            }
-        }
-    }
 
     private void limparCampos(){
         idField.setText("");
@@ -313,13 +241,13 @@ public class AlunoGUI extends JFrame implements PainelDefault{
         periodoField.setText("");
         dataNascimentoField.setText("");
         idEnderecoAlunoField.setText("");
+
+        logradouroField.setText("");
+        numLogradouroField.setText("");
+        bairroField.setText("");
+        cepField.setText("");
+        cidadeField.setText("");
+        ufField.setText("");
     }
 
-    public JButton getBtnExportarCsv() {
-        return btnExportarCsv;
-    }
-
-    public void setBtnExportarCsv(JButton btnExportarCsv) {
-        this.btnExportarCsv = btnExportarCsv;
-    }
 }
