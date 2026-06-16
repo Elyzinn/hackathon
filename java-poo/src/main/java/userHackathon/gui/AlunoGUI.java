@@ -11,7 +11,8 @@ import java.io.File;
 public class AlunoGUI extends JFrame implements PainelDefault{
     private final AlunoService service;
 
-    private JTable tabela;
+    JPanel painel = new JPanel(null);
+
     private JTextField idField = new JTextField();
     private JTextField nomeField = new JTextField();
     private JTextField cpfField = new JTextField();
@@ -35,6 +36,10 @@ public class AlunoGUI extends JFrame implements PainelDefault{
     private JButton btnIncluir = new JButton("Incluir");
     private JButton btnImportar = new JButton("Importar");
 
+    private JTable tabela = new JTable();
+    private JScrollPane scrollPane;
+
+
     public AlunoGUI() throws HeadlessException{
 
         this.service = new AlunoService();
@@ -45,14 +50,13 @@ public class AlunoGUI extends JFrame implements PainelDefault{
         setLocationRelativeTo(null);
         setResizable(false);
 
-        JPanel painel = new JPanel(null);
-
-        tabela = new JTable(getTabelaModel());
-        JScrollPane scrollPane = new JScrollPane(tabela);
-        scrollPane.setBounds(30,2220,725,200);
-        painel.add((scrollPane));
-
+        tabela.setModel(getTabelaModel());
+        tabela.setDefaultEditor(Object.class,null);
         tabela.getSelectionModel().addListSelectionListener(this::selecionarAluno);
+        scrollPane = new JScrollPane(tabela);
+
+        scrollPane.setBounds(30,20,725,200);
+        painel.add(scrollPane);
 
         idLabel.setBounds(30,240,50,20);
         idField.setBounds(30,260,50,30);
@@ -97,7 +101,7 @@ public class AlunoGUI extends JFrame implements PainelDefault{
 
         btnImportar.addActionListener(e -> acaoImportarTxt());
 
-        getContentPane().add(painel,BorderLayout.CENTER);
+        getContentPane().add(painel, BorderLayout.CENTER);
     }
 
     private DefaultTableModel getTabelaModel() {

@@ -5,11 +5,29 @@ public class Aluno {
     private String nome;
     private String cpf;
     private String email;
+    private Integer ra;
+    private String senha;
     private String telefone;
     private String curso;
     private Integer periodo;
     private String dataNascimento;
     private Long idEnderecoAluno;
+
+    public Integer getRa() {
+        return ra;
+    }
+
+    public void setRa(Integer ra) {
+        this.ra = ra;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
     public Long getId() {
         return id;
