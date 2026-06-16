@@ -9,6 +9,15 @@ public class Empresa {
     private String responsavel;
     private Long idEnderecoEmpresa;
     private Boolean status;
+    private EnderecoEmpresa endereco;
+
+    public EnderecoEmpresa getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(EnderecoEmpresa endereco) {
+        this.endereco = endereco;
+    }
 
     public Long getId() {
         return id;
