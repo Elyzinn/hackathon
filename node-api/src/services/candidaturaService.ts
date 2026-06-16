@@ -37,12 +37,19 @@ export class CandidaturaService{
         return await this.candidaturasRepo.deleteCandidatura(id);
     }
 
-    async listarCandidaturasPorAluno(aluno_id: number): Promise<CandidaturasEntity>{
+    async listarCandidaturasPorAluno(aluno_id: number): Promise<any[]>{
         const candidaturas = await this.candidaturasRepo.getCandidaturaByAluno(aluno_id);
         if(!candidaturas){
             throw new AppError(404, "Sem candidaturas");
         }
+        return candidaturas;
+    }
 
+        async listarCandidaturasPorEmpresa(empresa_id: number): Promise<any[]>{
+        const candidaturas = await this.candidaturasRepo.getCandidaturaByEmpresa(empresa_id);
+        if(!candidaturas){
+            throw new AppError(404, "Sem candidaturas");
+        }
         return candidaturas;
     }
 

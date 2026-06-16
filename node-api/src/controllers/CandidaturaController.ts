@@ -42,4 +42,20 @@ export class CandidaturaController {
             next(error)
         }
     }
+
+    listarCandidaturasPorEmpresa = async(req: Request, res: Response, next: NextFunction) => {
+        try {
+            const id = Number(req.params.id);
+            if(!Number.isInteger(id) || id < 1){
+                throw new AppError(400, "Parametros errados");
+            }
+            const candidaturas = await this.candidaturaService.listarCandidaturasPorEmpresa(id);
+            if(!candidaturas){
+                throw new AppError(404, "Nada encontrado")
+            }
+            res.json({candidaturas});
+        } catch (error) {
+            next(error)
+        }
+    }
 }

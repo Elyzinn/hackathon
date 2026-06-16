@@ -9,13 +9,21 @@
     }
     $id = $_GET['id'] ?? $_SESSION['empresa_id'];
     $empresa = new Empresa();
-    //
+    //Buscar vagas cadastradas pela empresa
     $resposta = $empresa->buscarVagas();
 
     $vagas = [];
 
     if($resposta ['status'] === 200 && isset($resposta['data'])){
         $vagas = $resposta['data']['vagas'];
+    }
+    
+    // Buscar candidatos das vagas
+    $resposta = $empresa->buscarCandidatos();
+
+    $candidatos = [];
+    if($resposta ['status'] === 200 && isset($resposta['data'])){
+        $candidatos = $resposta['data']['candidatos'];
     }
 
     ob_end_flush();
@@ -28,8 +36,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel de Empresa - UniALFA</title>
-
     <link rel="stylesheet" href="css/dashboard.css?v=<?php echo time(); ?>">
+    <script src="js/script.js" defer></script>
 </head>
 
 <body>
@@ -117,24 +125,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Gabriel Silva Santos</td>
-                                <td>Análise e Desenvolvimento de Sistemas</td>
-                                <td>Estágio em Desenvolvimento Web Back-End</td>
-                                <td>
-                                    <button class="btn-acao-secundario" onclick="alert('Visualizando Currículo...')">Ver Currículo</button>
-                                    <button class="btn-acao-primario" onclick="alert('Aluno Contratado com sucesso!')">Contratar</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Lucas Oliveira Souza</td>
-                                <td>Engenharia de Software</td>
-                                <td>Estágio em Desenvolvimento Web Back-End</td>
-                                <td>
-                                    <button class="btn-acao-secundario" onclick="alert('Visualizando Currículo...')">Ver Currículo</button>
-                                    <button class="btn-acao-primario" onclick="alert('Aluno Contratado com sucesso!')">Contratar</button>
-                                </td>
-                            </tr>
+                            <?php if(empty($candidatos)): ?>
+                                <p>Sem candidatos!</p>
+                            <?php else: ?>
+                                <?php foreach($candidatos as $candidato): ?>
+                                    <tr>
+                                        <td><?php $candidato['nome']?></td>
+                                        <td><?php $candidato['curso']?></td>
+                                        <td><?php $candidato['vaga']?></td>
+                                        <td>
+                                            <button class="btn-acao-primario" onclick="alert('Aluno Contratado com sucesso!')">Contratar</button>
+                                        </td>
+                                    </tr> 
+                                <?php endforeach; ?>
+                            <?php endif; ?>   
                         </tbody>
                     </table>
                 </div>
@@ -265,24 +269,6 @@
 
         </main>
     </div>
-
-    <script>
-        function alternarAba(event, idAba) {
-            event.preventDefault();
-
-            // Oculta todas as abas
-            const conteudos = document.querySelectorAll('.tab-content');
-            conteudos.forEach(conteudo => conteudo.classList.remove('active'));
-
-            // Remove a classe active dos links do menu
-            const links = document.querySelectorAll('.tab-link');
-            links.forEach(link => link.classList.remove('active'));
-
-            // Mostra a aba atual e marca o link como ativo
-            document.getElementById(idAba).classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
-    </script>
 
 </body>
 

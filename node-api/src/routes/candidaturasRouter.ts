@@ -13,4 +13,5 @@ const candidaturaController = new CandidaturaController(candidaturaService);
 
 candidaturaRouter.post("/criarCandidaturas", candidaturaController.realizarCandidatura);
 candidaturaRouter.get("/candAluno/:id", candidaturaController.listarCandidaturasPorAluno);
+candidaturaRouter.get("/candEmpresa/:id", candidaturaController.listarCandidaturasPorAluno);
 export default candidaturaRouter    ;
