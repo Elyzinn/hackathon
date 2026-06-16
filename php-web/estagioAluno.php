@@ -33,7 +33,7 @@
         //die();
         $res = $aluno->candidatar($vagaId);
         //var_dump($res);
-        die();
+        //die();
         if($aluno->resHttp($res)){
             $mensagem = "Candidatura realizada com sucesso";
             $tipo_msg = "sucesso";
@@ -118,13 +118,13 @@
                                     <input type="hidden" name="vaga_id" value="<?=$vaga['vaga_id']?>">
                                     <button class="btn-candidatar" type="submit">Candidatar-se</button>
                                 </form>
+                            </div>
+                        <?php endforeach; ?>
                                 <?php if(!empty($mensagem)): ?>
                                     <div class="msg-alerta-<?= $tipo_msg ?>">
                                         <?= htmlspecialchars($mensagem) ?>
                                     </div>
                                 <?php endif; ?>
-                            </div>
-                        <?php endforeach; ?>
                     <?php endif; ?>  
                 </div>
             </div>

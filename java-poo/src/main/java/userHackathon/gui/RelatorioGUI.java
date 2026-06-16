@@ -7,7 +7,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 
 public class RelatorioGUI extends JFrame implements PainelDefault{
     private final RelatoriosService service;
@@ -28,7 +27,7 @@ public class RelatorioGUI extends JFrame implements PainelDefault{
     private JButton btnIncluir = new JButton("Incluir");
     private JButton btnImportar = new JButton("Importar");
 
-    public RelaroiosGUI() throws HeadlessException{
+    public void RelaroiosGUI() throws HeadlessException{
 
         this.service = new RelatorioService();
 
