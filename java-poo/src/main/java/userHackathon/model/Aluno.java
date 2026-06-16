@@ -5,13 +5,22 @@ public class Aluno {
     private String cargo;
     private String cpf;
     private String email;
-    private Integer ra;
-    private String senha;
     private String telefone;
     private String curso;
     private Integer periodo;
     private String dataNascimento;
     private Long idEnderecoAluno;
+    private EnderecoAluno endereco;
+    private Integer ra;
+    private String senha;
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
     public Integer getRa() {
         return ra;
@@ -21,12 +30,12 @@ public class Aluno {
         this.ra = ra;
     }
 
-    public String getSenha() {
-        return senha;
+    public EnderecoAluno getEndereco() {
+        return endereco;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setEndereco(EnderecoAluno endereco) {
+        this.endereco = endereco;
     }
 
     public Long getId() {
