@@ -11,7 +11,7 @@ export class CandidaturaController {
         id: z.number().optional(),
         aluno_id: z.number({message: "Aluno ID é obrigatório"}),
         vagas_id: z.number({message: "Vaga ID é obrigatório"}),
-        data_candidatura: z.date({message: "Data da candidatura é obrigatória"}),
+        data_candidatura: z.coerce.date({message: "Data da candidatura é obrigatória"}),
     })
 
     realizarCandidatura = async(req: Request, res: Response, next: NextFunction) =>{

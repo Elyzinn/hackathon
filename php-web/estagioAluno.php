@@ -27,6 +27,22 @@
         $candidaturas = $resposta['data']['candidaturas'];
     }
 
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $vagaId = isset($_POST['vaga_id']) ? (int)$_POST['vaga_id'] : 0;
+        //var_dump($vagaId);
+        //die();
+        $res = $aluno->candidatar($vagaId);
+        //var_dump($res);
+        die();
+        if($aluno->resHttp($res)){
+            $mensagem = "Candidatura realizada com sucesso";
+            $tipo_msg = "sucesso";
+        }else{
+            $mensagem = "Candidatura não pode ser realizada";
+            $tipo_msg = "sucesso";
+        }
+    }
+
     ob_end_flush();
 ?>
 
@@ -98,7 +114,15 @@
                                     | E-mail: <?=$vaga['empresa_email'] ?? '' ?>
                                     | Requisitos: <?=$vaga['vaga_requisitos'] ?? '' ?> </p>
                                 </div>
-                                <button class="btn-candidatar" onclick="alert('Candidatura enviada com sucesso!')">Candidatar-se</button>
+                                <form method="POST">
+                                    <input type="hidden" name="vaga_id" value="<?=$vaga['vaga_id']?>">
+                                    <button class="btn-candidatar" type="submit">Candidatar-se</button>
+                                </form>
+                                <?php if(!empty($mensagem)): ?>
+                                    <div class="msg-alerta-<?= $tipo_msg ?>">
+                                        <?= htmlspecialchars($mensagem) ?>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         <?php endforeach; ?>
                     <?php endif; ?>  

@@ -41,6 +41,7 @@ export class CandidaturasRepository implements ICandidaturasRepository {
             .leftJoin("empresas", "empresa", "vaga.empresas_id = empresa.id")
             .select("candidatura.id", "id")
             .addSelect("candidatura.data_candidatura", "data_candidatura")
+            .addSelect("vaga.id", "vaga.id")
             .addSelect("vaga.cargo", "cargo")
             .addSelect("empresa.razao_social", "empresa")
             .addSelect("aluno.id", "aluno_id")
