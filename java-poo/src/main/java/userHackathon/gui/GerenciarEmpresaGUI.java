@@ -42,6 +42,22 @@ public class GerenciarEmpresaGUI extends JFrame implements PainelDefault {
     private JButton botaoAprovar = new JButton("Aceitar");
     private JButton botaoRejeitar = new JButton("Bloquear");
 
+    private JLabel logradouroLabel = new JLabel("Logradouro");
+    private JLabel numLogradouroLabel = new JLabel("Nº");
+    private JLabel bairroLabel = new JLabel("Bairro");
+    private JLabel cepLabel = new JLabel("CEP");
+    private JLabel cidadeLabel = new JLabel("Cidade");
+    private JLabel ufLabel = new JLabel("UF");
+    private JLabel raLabel = new JLabel("RA");
+
+    private JTextField logradouroField = new JTextField();
+    private JTextField numLogradouroField = new JTextField();
+    private JTextField bairroField = new JTextField();
+    private JTextField cepField = new JTextField();
+    private JTextField cidadeField = new JTextField();
+    private JTextField ufField = new JTextField();
+    private JTextField raField = new JTextField();
+
     private JTable tabela = new JTable();
     private JScrollPane scrollPane;
 
@@ -63,31 +79,46 @@ public class GerenciarEmpresaGUI extends JFrame implements PainelDefault {
         painel.add(scrollPane);
 
         // 2. FILEIRA 1 (ID, Razão Social, CNPJ)
-        idLabel.setBounds(30, 240, 60, 20);
-        idField.setBounds(30, 260, 60, 30);
+        idLabel.setBounds(30, 240, 30, 20);
+        idField.setBounds(30, 260, 30, 30);
 
-        razaoSocialLabel.setBounds(105, 240, 200, 20);
-        razaoSocialField.setBounds(105, 260, 340, 30);
+        razaoSocialLabel.setBounds(80, 240, 200, 20);
+        razaoSocialField.setBounds(80, 260, 240, 30);
 
-        cnpjLabel.setBounds(460, 240, 100, 20);
-        cnpjField.setBounds(460, 260, 160, 30);
+        cnpjLabel.setBounds(370, 240, 100, 20);
+        cnpjField.setBounds(370, 260, 120, 30);
 
         //FILEIRA 2 (Email, Telefone, Endereço)
         emailLabel.setBounds(30, 305, 100, 20);
-        emailField.setBounds(30, 325, 240, 30);
+        emailField.setBounds(30, 325, 170, 30);
 
-        telefoneContatoLabel.setBounds(285, 305, 150, 20);
-        telefoneContatoField.setBounds(285, 325, 220, 30);
+        telefoneContatoLabel.setBounds(220, 305, 150, 20);
+        telefoneContatoField.setBounds(220, 325, 130, 30);
 
-        idEnderecoLabel.setBounds(520, 305, 150, 20);
-        idEnderecoField.setBounds(520, 325, 150, 30);
+        idEnderecoLabel.setBounds(30, 370, 50, 20);
+        idEnderecoField.setBounds(30, 390, 30, 30);
 
         //FILEIRA 3 (Responsável, Status)
-        responsavelLabel.setBounds(30, 370, 100, 20);
-        responsavelField.setBounds(30, 390, 250, 30);
+        responsavelLabel.setBounds(370, 305, 100, 20);
+        responsavelField.setBounds(370, 325, 250, 30);
 
-        statusLabel.setBounds(520,370,100,20);
-        statusField.setBounds(520,390,100,30);
+        statusLabel.setBounds(510,240,100,20);
+        statusField.setBounds(510,260,100,30);
+
+        logradouroLabel.setBounds(90,370,150,20);
+        logradouroField.setBounds(90,390,150,30);
+
+        numLogradouroLabel.setBounds(260,370,30,20);
+        numLogradouroField.setBounds(260,390,50,30);
+
+        bairroLabel.setBounds(320,370,120,20);
+        bairroField.setBounds(320,390,120,30);
+
+        cepLabel.setBounds(450,370,100,20);
+        cepField.setBounds(450,390,100,30);
+
+        ufLabel.setBounds(570,370,30,20);
+        ufField.setBounds(570,390,30,30);
 
         //FILEIRA 4 (Botões de Ação na parte inferior)
         botaoAprovar.setBounds(30, 470, 150, 40);
@@ -101,6 +132,12 @@ public class GerenciarEmpresaGUI extends JFrame implements PainelDefault {
         painel.add(idEnderecoLabel); painel.add(idEnderecoField);
         painel.add(responsavelLabel); painel.add(responsavelField);
         painel.add(statusLabel); painel.add(statusField);
+        painel.add(logradouroLabel);painel.add(logradouroField);
+        painel.add(numLogradouroLabel);painel.add(numLogradouroField);
+        painel.add(cepLabel);painel.add(cepField);
+        painel.add(bairroLabel);painel.add(bairroField);
+        painel.add(cidadeLabel);painel.add(cidadeField);
+        painel.add(ufLabel);painel.add(ufField);
         painel.add(botaoAprovar);
         painel.add(botaoRejeitar);
 
@@ -161,6 +198,24 @@ public class GerenciarEmpresaGUI extends JFrame implements PainelDefault {
                     statusField.setText("Aprovado");
                 }else {
                     statusField.setText("Bloqueado");
+                }
+
+                if (empresa.getEndereco() != null) {
+
+                    logradouroField.setText(empresa.getEndereco().getLogradouro());
+                    numLogradouroField.setText(empresa.getEndereco().getNumLogradouro());
+                    bairroField.setText(empresa.getEndereco().getBairro());
+                    cepField.setText(empresa.getEndereco().getCep());
+                    cidadeField.setText(empresa.getEndereco().getCidade());
+                    ufField.setText(empresa.getEndereco().getUf());
+                } else {
+
+                    logradouroField.setText("");
+                    numLogradouroField.setText("");
+                    bairroField.setText("");
+                    cepField.setText("");
+                    cidadeField.setText("");
+                    ufField.setText("");
                 }
 
             }
