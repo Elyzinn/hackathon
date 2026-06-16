@@ -26,5 +26,10 @@
         public function buscarVagas():array{
             return $this->request('GET', 'vagas');
         }
+
+        public function buscarCandidaturas(): array {
+            $id = $_SESSION['aluno_id'] ?? $_GET['id'];
+            return $this->request('GET', "candAluno/$id");
+        }
     }
 

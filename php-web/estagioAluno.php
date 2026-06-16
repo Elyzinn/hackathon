@@ -10,6 +10,7 @@
     }
     $id = $_GET['id'] ?? $_SESSION['aluno_id'];
     $aluno = new Aluno();
+    // Buscar as vagas em aberto
     $resposta = $aluno->buscarVagas();
     
     $vagas = [];
@@ -17,7 +18,15 @@
     if($resposta ['status'] === 200 && isset($resposta['data'])){
         $vagas = $resposta['data']['vagas'];
     }
-    //var_dump($vagas);
+
+    // Buscar as candidaturas do aluno
+
+    $resposta = $aluno->buscarCandidaturas();
+    $candidaturas = [];
+    if($resposta ['status'] === 200 && isset($resposta['data']['candidaturas'])){
+        $candidaturas = $resposta['data']['candidaturas'];
+    }
+
     ob_end_flush();
 ?>
 
@@ -107,28 +116,16 @@
                                 <th>Vaga / Cargo</th>
                                 <th>Empresa</th>
                                 <th>Data Inscrição</th>
-                                <th>Status / Resultado</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Desenvolvedor PHP Júnior (Estágio)</td>
-                                <td>Alfa Tech Soluções</td>
-                                <td>10/06/2026</td>
-                                <td><span class="badge status-analise">Em Análise</span></td>
-                            </tr>
-                            <tr>
-                                <td>Estágio em Banco de Dados</td>
-                                <td>Beta Sistemas S.A.</td>
-                                <td>01/06/2026</td>
-                                <td><span class="badge status-aprovado">Aprovado</span></td>
-                            </tr>
-                            <tr>
-                                <td>Suporte Técnico Interno</td>
-                                <td>Inova Digital</td>
-                                <td>25/05/2026</td>
-                                <td><span class="badge status-recusado">Não Selecionado</span></td>
-                            </tr>
+                            <?php foreach($candidaturas as $candidatura):?>
+                                <tr>
+                                    <td><?= $candidatura['cargo']?></td>
+                                    <td><?= $candidatura['empresa']?></td>
+                                    <td><?= date('d/m/Y', strtotime($candidatura['data_candidatura'])) ?></td>
+                                </tr>
+                            <?php endforeach;?>
                         </tbody>
                     </table>
                 </div>

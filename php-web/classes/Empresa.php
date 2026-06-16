@@ -52,4 +52,9 @@
                 
             ]);
         }
+
+        public function buscarVagas():array{
+            $id = $_SESSION['empresa_id'] ?? $_GET['id'];
+            return $this->request('GET', 'vagasPorEmpresa/$id');
+        }
     }

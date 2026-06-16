@@ -1,11 +1,24 @@
 <?php
-session_start();
+    ob_start();
+    session_start();
+    require_once 'classes/Empresa.php';
+    // Proteção da página (opcional, remova os comentários '//' se for usar)
+    if (!isset($_SESSION['empresaLogado']) || $_SESSION['empresaLogado'] !== true) {
+        header('Location: login-empresa.php');
+        exit;
+    }
+    $id = $_GET['id'] ?? $_SESSION['empresa_id'];
+    $empresa = new Empresa();
+    //
+    $resposta = $empresa->buscarVagas();
 
-// Proteção da página (opcional, remova os comentários '//' se for usar)
-if (!isset($_SESSION['empresaLogado']) || $_SESSION['empresaLogado'] !== true) {
-    header('Location: login-empresa.php');
-    exit;
-}
+    $vagas = [];
+
+    if($resposta ['status'] === 200 && isset($resposta['data'])){
+        $vagas = $resposta['data']['vagas'];
+    }
+
+    ob_end_flush();
 ?>
 
 <!DOCTYPE html>
@@ -67,21 +80,25 @@ if (!isset($_SESSION['empresaLogado']) || $_SESSION['empresaLogado'] !== true) {
                     <h3>Vagas Abertas</h3>
                     <p style="color: #666; margin-bottom: 20px;">Acompanhe as oportunidades que a sua organização disponibilizou no portal:</p>
 
-                    <div class="item-lista-painel">
-                        <div>
-                            <strong style="font-size: 1.1rem; color: #115c74;">Estágio em Desenvolvimento Web Back-End</strong>
-                            <p style="color: #555; margin-top: 5px;">Setor: Tecnologia | Bolsa: R$ 1.200,00</p>
-                        </div>
-                        <span class="badge status-aprovado">Recebendo Currículos</span>
-                    </div>
-
-                    <div class="item-lista-painel">
-                        <div>
-                            <strong style="font-size: 1.1rem; color: #115c74;">Estágio em Suporte e Infraestrutura</strong>
-                            <p style="color: #555; margin-top: 5px;">Setor: TI / Redes | Bolsa: R$ 1.000,00</p>
-                        </div>
-                        <span class="badge status-aprovado">Recebendo Currículos</span>
-                    </div>
+                    <?php if(empty($vagas)):?>
+                        <p>Não há Vagas</p>
+                    <?php else: ?>
+                        <?php foreach($vagas as $vaga): ?>                
+                            <div class="item-lista-painel">
+                                <div>
+                                    <strong style="font-size: 1.1rem; color: #115c74;">Vaga: <?=$vaga['vaga_cargo'] ?></strong>
+                                    <p style="color: #555; margin-top: 5px;">Data de Fechamento: <?= date('d/m/Y', strtotime($vaga['vaga_data_fechamento'])) ?> 
+                                    | Requsitos: <?=$vaga['vaga_requisitos'] ?>
+                                </p>
+                                </div>
+                                <?php if($vaga['vaga_vaga_preenchida'] == 1): ?>
+                                    <span class="badge status-recusado">Vaga Preenchida</span>
+                                <?php else: ?>
+                                    <span class="badge status-aprovado">Recebendo Currículos</span>
+                                <?php endif; ?>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>   
                 </div>
             </div>
 

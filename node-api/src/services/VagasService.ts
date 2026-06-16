@@ -23,7 +23,13 @@ export class VagasService{
         return vagas;
     }
 
-
+    async listarVagasPorEmpresa(empresa_id: number): Promise<any[]>{
+        const vagas = await this.vagasRepo.getVagaPorEmpresa(empresa_id);  
+        if(!vagas || vagas.length === 0){
+            throw new AppError(404, "Nenhuma vaga encontrada");
+        }
+        return vagas;
+    }
     async createVaga(dados: Omit<VagasEntity, "id">): Promise<VagasEntity>{
         const vagas = await this.vagasRepo.createVaga(dados);
         return vagas;
