@@ -2,7 +2,7 @@ package userHackathon.model;
 
 public class Aluno {
     private Long id;
-    private String nome;
+    private String cargo;
     private String cpf;
     private String email;
     private Integer ra;
