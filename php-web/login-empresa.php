@@ -1,4 +1,5 @@
 <?php
+    ob_start();    
     session_start();
     require_once 'classes/Empresa.php';
   
@@ -7,17 +8,25 @@
         $res = $empresa->logar($_POST['cnpj'], $_POST['senha'], $_POST['email']);
         //var_dump($res);
         //var_dump($empresa->resHttp($res));
+        session_unset(); 
+        session_destroy();
+        session_start();
+
         if ($empresa->loginSucess($res)){
+            $id = $res['data']['loginSemSenha']['id'];
             $_SESSION['empresa_cnpj'] = $_POST['cnpj'];
             $_SESSION['empresa_email'] = $_POST['email'];
             $_SESSION['empresaLogado'] = true;
+            $_SESSION['empresa_id'] = $id;
+
             //var_dump($_SESSION);
-            header('Location: estagioEmpresa.php');
+            header('Location: estagioEmpresa.php?id=' . $id);
         }else{
            $mensagem = 'Erro ao entrar no cadastros empresa. Verifique os dados e tente novamente.';
            $tipo_msg = 'erro'; 
         }
     }
+    ob_end_flush();    
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">

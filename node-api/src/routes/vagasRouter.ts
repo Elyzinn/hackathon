@@ -12,6 +12,7 @@ const vagasService = new VagasService(vagasRepository);
 const vagasController = new VagasController(vagasService);
 
 vagasRouter.get("/vagas", vagasController.listarVagas);
+vagasRouter.get("/vagasPorEmpresa/:id", vagasController.listarVagas);
 vagasRouter.post("/criarVagas", vagasController.CriarVagas);
 
 export default vagasRouter;

@@ -25,8 +25,8 @@ export class EmpresaRepository implements IEmpresaRepository{
     }
 
     async getEmpresaByCnpj(cnpj: string): Promise<EmpresasEntity | undefined> {
-        const aluno = await this.repo.findOne({where: {cnpj}});
-        return aluno ?? undefined;
+        const linha = await this.repo.findOne({where: {cnpj}});
+        return linha ?? undefined;
     }
 
     async createEmpresa(dadosEmpresa: Omit<EmpresasEntity, "id" | "endereco_empresa">, dadosEndereco: Omit<EnderecoEmpresaEntity, "id">): Promise<EmpresasEntity> {
