@@ -8,6 +8,7 @@ import userHackathon.model.EnderecoAluno;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AlunoService {
@@ -18,6 +19,17 @@ public class AlunoService {
 
             return dao.listar();
         } catch (Exception e) {
+            System.out.println("[Service] Erro ao listar alunos: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+
+    public boolean salvarAluno(Aluno aluno) {
+        if (aluno == null) {
+            System.out.println("[Service] Aluno inválido (nulo).");
+            return false;
+        }
+        try {
             System.out.println("ERRO" + e.getMessage());
             e.getStackTrace();
             return null;
@@ -41,13 +53,23 @@ public class AlunoService {
                 }
 
                 dao.inserir(aluno);
-            }else{
+            } else {
                 dao.atualizar(aluno);
 
                 if (aluno.getIdEnderecoAluno() != null){
                     enderecoDao.atualizar(endereco);
                 }
             }
+            return true;
+
+        } catch (Exception e) {
+            System.out.println("[Service] Erro ao salvar aluno: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public void importarTxt(File arquivo) throws Exception {
+        try (BufferedReader br = new BufferedReader(new FileReader(arquivo))) {
         }catch (java.sql.SQLException ex){
             System.out.println(ex.getMessage());
         }
@@ -63,7 +85,9 @@ public class AlunoService {
     public void importarTxt(File arquivo) throws Exception{
         try (BufferedReader br = new BufferedReader(new FileReader(arquivo))){
             String linha;
-            while ((linha = br.readLine()) != null){
+            while ((linha = br.readLine()) != null) {
+                if (linha.trim().isEmpty()) continue; // Pula linhas vazias
+
                 String[] dados = linha.split(";");
 
                 if (dados.length >= 13){
