@@ -38,7 +38,8 @@ public class RelatorioGUI extends JFrame implements PainelDefault {
     private JButton btnExportarPdf = new JButton("Exportar PDF");
     private JButton btnExportarCsv = new JButton("Exportar CSV");
 
-    public RelatorioGUI() throws HeadlessException {
+    public RelatorioGUI() throws HeadlessException{
+
         this.service = new RelatorioService();
 
         setTitle("Gerenciamento de Vagas e Relatórios");
@@ -49,27 +50,38 @@ public class RelatorioGUI extends JFrame implements PainelDefault {
 
         JPanel painel = new JPanel(null);
 
-        tabela = new JTable(getTabelaModel());
+       // tabela = new JTable(getTabelaModel());
         JScrollPane scrollPane = new JScrollPane(tabela);
         scrollPane.setBounds(30, 20, 725, 200);
         painel.add(scrollPane);
 
-        tabela.getSelectionModel().addListSelectionListener(this::selecionarAluno);
+        id_empresasJLabel.setBounds(100,240,300,20);
+        id_empresasField.setBounds(100,260,300,30);
 
-        id_empresasJLabel.setBounds(30, 240, 300, 20);
-        id_empresasField.setBounds(30, 260, 340, 30);
+        id_alunosJLabel.setBounds(460,240,100,20);
+        id_alunosField.setBounds(460,260,160,30);
+
+        id_vagasJLabel.setBounds(30,305,100,20);
+        id_vagasField.setBounds(30,325,240,30);
+
+        id_candidaturasJLabel.setBounds(285,305,150,20);
+        id_candidaturasField.setBounds(285,325,220,30);
 
         id_alunosJLabel.setBounds(400, 240, 100, 20);
         id_alunosField.setBounds(400, 260, 355, 30);
 
-        id_vagasJLabel.setBounds(30, 315, 100, 20);
-        id_vagasField.setBounds(30, 335, 220, 30);
+        btnImportar.setBounds(30,470,150,40);
+        btnIncluir.setBounds(200,470,150,40);
 
-        id_candidaturasJLabel.setBounds(280, 315, 150, 20);
-        id_candidaturasField.setBounds(280, 335, 220, 30);
-
-        id_contratosJLabel.setBounds(530, 315, 150, 20);
-        id_contratosField.setBounds(530, 335, 225, 30);
+        painel.add(id_empresasJLabel);painel.add(id_empresasJLabel);
+        painel.add(id_alunosJLabel);painel.add(id_alunosJLabel);
+        painel.add(id_vagasJLabel);painel.add(id_vagasJLabel);
+        painel.add(id_candidaturasJLabel);painel.add(id_candidaturasJLabel);
+        painel.add(id_contratosJLabel);painel.add(id_contratosJLabel);
+//        painel.add(periodoLabel);painel.add(periodoField);
+//        painel.add(dataNascimentoLabel);painel.add(dataNascimentoField);
+//        painel.add(idEnderecoAlunoLabel);painel.add(idEnderecoAlunoField);
+        painel.add(btnIncluir);painel.add(btnImportar);
 
         btnImportar.setBounds(30, 470, 130, 40);
         btnIncluir.setBounds(175, 470, 130, 40);
