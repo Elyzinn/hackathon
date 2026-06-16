@@ -25,7 +25,8 @@
     if($resposta ['status'] === 200 && isset($resposta['data'])){
         $candidatos = $resposta['data']['candidatos'];
     }
-
+    var_dump($candidatos);
+    die();
     ob_end_flush();
 ?>
 
