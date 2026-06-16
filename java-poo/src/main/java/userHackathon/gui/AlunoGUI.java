@@ -1,5 +1,8 @@
 package userHackathon.gui;
 
+import com.itextpdf.text.*;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.pdf.*;
 import userHackathon.service.AlunoService;
 
 import javax.swing.*;
@@ -7,11 +10,14 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.File;
+import java.io.FileOutputStream;
+
 
 public class AlunoGUI extends JFrame implements PainelDefault{
     private final AlunoService service;
 
-    private JTable tabela;
+    JPanel painel = new JPanel(null);
+
     private JTextField idField = new JTextField();
     private JTextField nomeField = new JTextField();
     private JTextField cpfField = new JTextField();
@@ -34,6 +40,15 @@ public class AlunoGUI extends JFrame implements PainelDefault{
 
     private JButton btnIncluir = new JButton("Incluir");
     private JButton btnImportar = new JButton("Importar");
+    private JButton btnExportarPdf = new JButton("Exportar PDF");
+    private JButton btnExportarTxt = new JButton("Exportar TXT");
+    private JButton btnExportarCsv = new JButton("Exportar CSV");
+
+
+
+    private JTable tabela = new JTable();
+    private JScrollPane scrollPane;
+
 
     public AlunoGUI() throws HeadlessException{
 
@@ -45,14 +60,13 @@ public class AlunoGUI extends JFrame implements PainelDefault{
         setLocationRelativeTo(null);
         setResizable(false);
 
-        JPanel painel = new JPanel(null);
-
-        tabela = new JTable(getTabelaModel());
-        JScrollPane scrollPane = new JScrollPane(tabela);
-        scrollPane.setBounds(30,2220,725,200);
-        painel.add((scrollPane));
-
+        tabela.setModel(getTabelaModel());
+        tabela.setDefaultEditor(Object.class,null);
         tabela.getSelectionModel().addListSelectionListener(this::selecionarAluno);
+        scrollPane = new JScrollPane(tabela);
+
+        scrollPane.setBounds(30,20,725,200);
+        painel.add(scrollPane);
 
         idLabel.setBounds(30,240,50,20);
         idField.setBounds(30,260,50,30);
@@ -81,8 +95,19 @@ public class AlunoGUI extends JFrame implements PainelDefault{
         idEnderecoAlunoLabel.setBounds(320,370,100,20);
         idEnderecoAlunoField.setBounds(320,390,100,30);
 
-        btnImportar.setBounds(30,470,150,40);
-        btnIncluir.setBounds(200,470,150,40);
+        btnExportarTxt.setBounds(370, 520, 150, 40);
+        painel.add(btnExportarTxt);
+        btnExportarTxt.addActionListener(e -> acaoExportarTxt());
+
+        btnImportar.setBounds(100, 470, 150, 40);
+        btnIncluir.setBounds(270, 470, 150, 40);
+        btnExportarPdf.setBounds(440, 470, 150, 40);
+
+        btnExportarCsv.setBounds(165, 525, 150, 40);
+        btnExportarTxt.setBounds(335, 525, 150, 40);
+
+        painel.add(btnExportarCsv);
+        btnExportarCsv.addActionListener(e -> acaoExportarCsv());
 
         painel.add(idLabel);painel.add(idField);
         painel.add(nomeLabel);painel.add(nomeField);
@@ -94,10 +119,14 @@ public class AlunoGUI extends JFrame implements PainelDefault{
         painel.add(dataNascimentoLabel);painel.add(dataNascimentoField);
         painel.add(idEnderecoAlunoLabel);painel.add(idEnderecoAlunoField);
         painel.add(btnIncluir);painel.add(btnImportar);
+        painel.add(btnExportarPdf);
 
         btnImportar.addActionListener(e -> acaoImportarTxt());
+        btnExportarPdf.addActionListener(e -> acaoExportarPdf());
 
-        getContentPane().add(painel,BorderLayout.CENTER);
+
+
+        getContentPane().add(painel, BorderLayout.CENTER);
     }
 
     private DefaultTableModel getTabelaModel() {
@@ -150,6 +179,130 @@ public class AlunoGUI extends JFrame implements PainelDefault{
         }
     }
 
+    private void acaoExportarTxt() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setSelectedFile(new File("relatorio_alunos.txt"));
+        int retorno = fileChooser.showSaveDialog(this);
+
+        if (retorno == JFileChooser.APPROVE_OPTION) {
+            File arquivoSelecionado = fileChooser.getSelectedFile();
+
+            if (!arquivoSelecionado.getName().endsWith(".txt")) {
+                arquivoSelecionado = new File(arquivoSelecionado.getAbsolutePath() + ".txt");
+            }
+
+            try {
+                gerarTxt(arquivoSelecionado);
+                JOptionPane.showMessageDialog(this, "TXT exportado com sucesso!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Erro ao exportar: " + e.getMessage());
+            }
+        }
+    }
+
+    private void gerarTxt(File arquivo) throws Exception {
+        java.util.List<userHackathon.model.Aluno> alunos = service.listar();
+
+        try (java.io.BufferedWriter writer = new java.io.BufferedWriter(new java.io.FileWriter(arquivo))) {
+            writer.write("ID | Nome | CPF");
+            writer.newLine();
+            writer.write("--------------------------------");
+            writer.newLine();
+
+            for (userHackathon.model.Aluno aluno : alunos) {
+                writer.write(aluno.getId() + " | " + aluno.getNome() + " | " + aluno.getCpf());
+                writer.newLine();
+            }
+        }
+    }
+
+    // NOVO
+    private void acaoExportarPdf() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setSelectedFile(new File("relatorio_alunos.pdf"));
+        int retorno = fileChooser.showSaveDialog(this);
+
+        if (retorno == JFileChooser.APPROVE_OPTION) {
+            File arquivoSelecionado = fileChooser.getSelectedFile();
+
+            if (!arquivoSelecionado.getName().endsWith(".pdf")) {
+                arquivoSelecionado = new File(arquivoSelecionado.getAbsolutePath() + ".pdf");
+            }
+
+            try {
+                gerarPdf(arquivoSelecionado);
+                JOptionPane.showMessageDialog(this, "Relatório exportado com sucesso!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Erro ao exportar: " + e.getMessage());
+            }
+        }
+    }
+
+    private void gerarPdf(File arquivo) throws Exception {
+        java.util.List<userHackathon.model.Aluno> alunos = service.listar();
+
+        Document document = new Document();
+        PdfWriter.getInstance(document, new FileOutputStream(arquivo));
+        document.open();
+
+        Font fonteTitulo = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
+        document.add(new Paragraph("Relatório de Alunos", fonteTitulo));
+        document.add(new Paragraph(" "));
+
+        PdfPTable tabela = new PdfPTable(3);
+        tabela.setWidthPercentage(100);
+
+        tabela.addCell("ID");
+        tabela.addCell("Nome");
+        tabela.addCell("CPF");
+
+        for (userHackathon.model.Aluno aluno : alunos) {
+            tabela.addCell(aluno.getId().toString());
+            tabela.addCell(aluno.getNome());
+            tabela.addCell(aluno.getCpf());
+        }
+
+        document.add(tabela);
+        document.close();
+    }
+
+    private void acaoExportarCsv() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setSelectedFile(new File("relatorio_alunos.csv"));
+        int retorno = fileChooser.showSaveDialog(this);
+
+        if (retorno == JFileChooser.APPROVE_OPTION) {
+            File arquivoSelecionado = fileChooser.getSelectedFile();
+
+            if (!arquivoSelecionado.getName().endsWith(".csv")) {
+                arquivoSelecionado = new File(arquivoSelecionado.getAbsolutePath() + ".csv");
+            }
+
+            try {
+                gerarCsv(arquivoSelecionado);
+                JOptionPane.showMessageDialog(this, "CSV exportado com sucesso!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Erro ao exportar: " + e.getMessage());
+            }
+        }
+    }
+
+    private void gerarCsv(File arquivo) throws Exception {
+        java.util.List<userHackathon.model.Aluno> alunos = service.listar();
+
+        try (java.io.BufferedWriter writer = new java.io.BufferedWriter(new java.io.FileWriter(arquivo))) {
+            // Cabeçalho
+            writer.write("ID,Nome,CPF");
+            writer.newLine();
+
+            // Linhas de dados
+            for (userHackathon.model.Aluno aluno : alunos) {
+                writer.write(aluno.getId() + "," + aluno.getNome() + "," + aluno.getCpf());
+                writer.newLine();
+            }
+        }
+    }
+
     private void limparCampos(){
         idField.setText("");
         nomeField.setText("");
@@ -162,4 +315,11 @@ public class AlunoGUI extends JFrame implements PainelDefault{
         idEnderecoAlunoField.setText("");
     }
 
+    public JButton getBtnExportarCsv() {
+        return btnExportarCsv;
+    }
+
+    public void setBtnExportarCsv(JButton btnExportarCsv) {
+        this.btnExportarCsv = btnExportarCsv;
+    }
 }

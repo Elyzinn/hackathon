@@ -47,11 +47,12 @@ export class EmpresaController {
     loginEmpresa = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const dados = this.schemaLogin.parse(req.body);
-            const login = await await this.empresaService.loginEmpresa(dados);
+            const login = await this.empresaService.loginEmpresa(dados);
             if (!login) {
                 throw new AppError(404, "Erro ao logar");
             }
-            res.status(200).json({ message: "Empresa logada" })
+            const { senha, ...loginSemSenha } = login;
+            res.status(200).json({ message: "Empresa logada", loginSemSenha })
         } catch (error) {
             next(error)
         }

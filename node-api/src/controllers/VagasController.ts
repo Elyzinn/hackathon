@@ -4,6 +4,7 @@ import AppError from '../utils/AppErrors';
 import z from "zod";
 
 
+
 export class VagasController{
     constructor(private readonly vagasService: VagasService){};
 
@@ -20,6 +21,16 @@ export class VagasController{
     listarVagas = async(req: Request, res: Response, next: NextFunction) =>{
         try {
             const vagas = await this.vagasService.listarVagasAll();
+            res.json({ vagas });
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    listarVagasPorEmpresa = async(req: Request, res: Response, next: NextFunction) =>{
+        const empresa_id = Number(req.params.id);
+        try {
+            const vagas = await this.vagasService.listarVagasPorEmpresa(empresa_id);
             res.json({ vagas });
         } catch (error) {
             next(error)
