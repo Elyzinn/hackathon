@@ -6,10 +6,6 @@ public class Relatorios {
     private Long id_vagas;
     private Long id_candidaturas;
     private Long id_contratos;
-    private String curso;
-    private Integer periodo;
-    private String dataNascimento;
-    private Long idEnderecoAluno;
 
     public Long getId_empresas() {
         return id_empresas;
@@ -50,37 +46,4 @@ public class Relatorios {
     public void setId_contratos(Long id_contratos) {
         this.id_contratos = id_contratos;
     }
-
-    public String getCurso() {
-        return curso;
-    }
-
-    public void setCurso(String curso) {
-        this.curso = curso;
-    }
-
-    public Integer getPeriodo() {
-        return periodo;
-    }
-
-    public void setPeriodo(Integer periodo) {
-        this.periodo = periodo;
-    }
-
-    public String getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public Long getIdEnderecoAluno() {
-        return idEnderecoAluno;
-    }
-
-    public void setIdEnderecoAluno(Long idEnderecoAluno) {
-        this.idEnderecoAluno = idEnderecoAluno;
-    }
 }
-
