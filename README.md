@@ -72,6 +72,44 @@ Para simular os ambientes de banco de dados, API REST e páginas web para acesso
 - Container de PHP myadmin:
     - Container resposavel pela visualização web do banco de dados durante o desenvolvimento do sistema.
 
+# Estrutura de pastas:
+## Estrutura de pasta na aplicação do BackOffice:
+
+    hackathon-java/
+    ┣ docs/
+    ┗ src/
+    ┗ main/
+        ┗ java/
+        ┗ userHackathon/
+            ┣ dao/
+            ┣ gui/
+            ┣ model/
+            ┣ service/
+            ┗ util/
+
+## Estrutura de pastas na estrutura da API em Node.JS:
+
+    hackathon-node-api/
+    ┗ src/
+    ┣ controllers/
+    ┣ database/
+    ┃ ┣ migrations/
+    ┃ ┗ seeds/
+    ┣ middlewares/
+    ┣ models/
+    ┣ repositories/
+    ┣ routes/
+    ┣ services/
+    ┗ utils/
+
+## Estrutura de pastas na estrutura das páginas Web:
+
+    hackathon-php-web/
+    ┣ classes/
+    ┣ css/
+    ┣ img/
+    ┗ js/
+
 # Modus operante de desenvolvimento
 
 ## Repositório remoto original:
